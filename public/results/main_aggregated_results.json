@@ -1,0 +1,1281 @@
+{
+  "runs": [
+    {
+      "run_id": "main-20260922-01",
+      "client_rows": 35834,
+      "client_first_send_utc": "2026-09-22T11:48:12.517462058Z",
+      "client_last_send_utc": "2026-09-22T19:07:38.267765546Z",
+      "client_last_transaction_end_utc": "2026-09-22T19:07:38.276765546Z",
+      "packet_count": 139035,
+      "snaplen_truncated_packets": 0,
+      "timestamp_regressions": 6,
+      "network_parse_errors": 0,
+      "dns_parse_errors": 0,
+      "incoming_udp_dns_questions": 68894,
+      "tcp_port53_packets": 1243,
+      "fragment_packets": 0,
+      "first_before_client_send": 8,
+      "file_first_differs_from_chronological_first": 0,
+      "pcap_sha256": "0833A2FAD53EF392EF56EE94C601FFA8CFFD6243AD89F9B8877B33964192D9F7",
+      "snaplen": 262144,
+      "linktype": 1,
+      "structural_eof_complete": true,
+      "unique_names_seen": 12937,
+      "unique_matching_packets": 13935,
+      "repeated_unique_names": 523,
+      "min_first_minus_send_ms": -35.600303,
+      "pcap_first_packet_utc": "2026-09-22T11:48:12.492387000Z",
+      "pcap_last_packet_utc": "2026-09-22T19:05:26.249310000Z",
+      "client_sends_before_first_packet": 0,
+      "client_sends_after_last_packet": 617,
+      "outside_after_by_case": {
+        "23": 617
+      },
+      "last_packet_minus_transaction_end_seconds": -132.027455546
+    },
+    {
+      "run_id": "main-20260922-02",
+      "client_rows": 35834,
+      "client_first_send_utc": "2026-09-23T08:31:41.848971750Z",
+      "client_last_send_utc": "2026-09-23T17:10:04.942055376Z",
+      "client_last_transaction_end_utc": "2026-09-23T17:10:04.950055376Z",
+      "packet_count": 204091,
+      "snaplen_truncated_packets": 0,
+      "timestamp_regressions": 4,
+      "network_parse_errors": 0,
+      "dns_parse_errors": 0,
+      "incoming_udp_dns_questions": 100411,
+      "tcp_port53_packets": 3268,
+      "fragment_packets": 0,
+      "first_before_client_send": 264,
+      "file_first_differs_from_chronological_first": 0,
+      "pcap_sha256": "1EF9B524D8E39DD3ABD1CD0C27A20C3F68BD9784676CC9D93AF40F79AFBA0E8D",
+      "snaplen": 262144,
+      "linktype": 1,
+      "structural_eof_complete": true,
+      "unique_names_seen": 12273,
+      "unique_matching_packets": 14403,
+      "repeated_unique_names": 1059,
+      "min_first_minus_send_ms": -44.746913,
+      "pcap_first_packet_utc": "2026-09-23T08:31:41.869793000Z",
+      "pcap_last_packet_utc": "2026-09-23T17:32:46.806546000Z",
+      "client_sends_before_first_packet": 1,
+      "client_sends_after_last_packet": 0,
+      "outside_after_by_case": {},
+      "last_packet_minus_transaction_end_seconds": 1361.856490624
+    },
+    {
+      "run_id": "main-20260923-03",
+      "client_rows": 35834,
+      "client_first_send_utc": "2026-09-24T10:21:43.803358035Z",
+      "client_last_send_utc": "2026-09-24T15:36:31.581604961Z",
+      "client_last_transaction_end_utc": "2026-09-24T15:36:31.628604961Z",
+      "packet_count": 118841,
+      "snaplen_truncated_packets": 0,
+      "timestamp_regressions": 2,
+      "network_parse_errors": 0,
+      "dns_parse_errors": 0,
+      "incoming_udp_dns_questions": 58702,
+      "tcp_port53_packets": 1437,
+      "fragment_packets": 0,
+      "first_before_client_send": 753,
+      "file_first_differs_from_chronological_first": 0,
+      "pcap_sha256": "729069F2505DE850CF90E8CC4F0501AD62666213AB3E4D2AF2E9CD33A2A3C665",
+      "snaplen": 262144,
+      "linktype": 1,
+      "structural_eof_complete": true,
+      "unique_names_seen": 8150,
+      "unique_matching_packets": 10037,
+      "repeated_unique_names": 1237,
+      "min_first_minus_send_ms": -63.634034,
+      "pcap_first_packet_utc": "2026-09-24T10:21:43.841294000Z",
+      "pcap_last_packet_utc": "2026-09-24T15:43:15.073548000Z",
+      "client_sends_before_first_packet": 1,
+      "client_sends_after_last_packet": 0,
+      "outside_after_by_case": {},
+      "last_packet_minus_transaction_end_seconds": 403.444943039
+    },
+    {
+      "run_id": "main-20260924-04",
+      "client_rows": 35834,
+      "client_first_send_utc": "2026-09-24T16:15:06.069089142Z",
+      "client_last_send_utc": "2026-09-24T22:47:32.509193646Z",
+      "client_last_transaction_end_utc": "2026-09-24T22:47:32.622193646Z",
+      "packet_count": 221092,
+      "snaplen_truncated_packets": 0,
+      "timestamp_regressions": 6,
+      "network_parse_errors": 0,
+      "dns_parse_errors": 0,
+      "incoming_udp_dns_questions": 109001,
+      "tcp_port53_packets": 3086,
+      "fragment_packets": 0,
+      "first_before_client_send": 227,
+      "file_first_differs_from_chronological_first": 0,
+      "pcap_sha256": "7589AFA30EABA4E48CD6E42FEE2DF280D89A4458FB1BCD9CBD0EF2C27DB7D707",
+      "snaplen": 262144,
+      "linktype": 1,
+      "structural_eof_complete": true,
+      "unique_names_seen": 12238,
+      "unique_matching_packets": 14349,
+      "repeated_unique_names": 1206,
+      "min_first_minus_send_ms": -57.753684,
+      "pcap_first_packet_utc": "2026-09-24T16:15:06.188949000Z",
+      "pcap_last_packet_utc": "2026-09-24T22:45:13.616462000Z",
+      "client_sends_before_first_packet": 1,
+      "client_sends_after_last_packet": 475,
+      "outside_after_by_case": {
+        "23": 475
+      },
+      "last_packet_minus_transaction_end_seconds": -139.005731646
+    }
+  ],
+  "case_first": {
+    "1": {
+      "matched_unique_names": 4942,
+      "qclass_matches_manifest": 4942,
+      "rd_true": 0,
+      "ad_true": 0,
+      "cd_true": 2771,
+      "opt_true": 4911,
+      "do_true": 4725,
+      "n3u_present": 0,
+      "tkey_rr_present": 0
+    },
+    "4": {
+      "matched_unique_names": 4868,
+      "qclass_matches_manifest": 4868,
+      "rd_true": 0,
+      "ad_true": 0,
+      "cd_true": 2699,
+      "opt_true": 4834,
+      "do_true": 4654,
+      "n3u_present": 0,
+      "tkey_rr_present": 0
+    },
+    "5": {
+      "matched_unique_names": 4904,
+      "qclass_matches_manifest": 4904,
+      "rd_true": 0,
+      "ad_true": 0,
+      "cd_true": 2983,
+      "opt_true": 4870,
+      "do_true": 4692,
+      "n3u_present": 0,
+      "tkey_rr_present": 0
+    },
+    "6": {
+      "matched_unique_names": 4756,
+      "qclass_matches_manifest": 4756,
+      "rd_true": 0,
+      "ad_true": 0,
+      "cd_true": 2657,
+      "opt_true": 4726,
+      "do_true": 4557,
+      "n3u_present": 0,
+      "tkey_rr_present": 0
+    },
+    "7": {
+      "matched_unique_names": 4726,
+      "qclass_matches_manifest": 4726,
+      "rd_true": 0,
+      "ad_true": 0,
+      "cd_true": 2839,
+      "opt_true": 4698,
+      "do_true": 4535,
+      "n3u_present": 0,
+      "tkey_rr_present": 0
+    },
+    "8": {
+      "matched_unique_names": 4725,
+      "qclass_matches_manifest": 4725,
+      "rd_true": 0,
+      "ad_true": 0,
+      "cd_true": 2646,
+      "opt_true": 4694,
+      "do_true": 4524,
+      "n3u_present": 0,
+      "tkey_rr_present": 0
+    },
+    "11": {
+      "matched_unique_names": 5774,
+      "qclass_matches_manifest": 5774,
+      "rd_true": 0,
+      "ad_true": 0,
+      "cd_true": 3579,
+      "opt_true": 5743,
+      "do_true": 5562,
+      "n3u_present": 0,
+      "tkey_rr_present": 0
+    },
+    "15": {
+      "matched_unique_names": 4962,
+      "qclass_matches_manifest": 4962,
+      "rd_true": 0,
+      "ad_true": 0,
+      "cd_true": 2762,
+      "opt_true": 4929,
+      "do_true": 4727,
+      "n3u_present": 0,
+      "tkey_rr_present": 0
+    },
+    "18": {
+      "matched_unique_names": 5780,
+      "qclass_matches_manifest": 5780,
+      "rd_true": 0,
+      "ad_true": 0,
+      "cd_true": 3621,
+      "opt_true": 5754,
+      "do_true": 5579,
+      "n3u_present": 0,
+      "tkey_rr_present": 0
+    },
+    "21": {
+      "matched_unique_names": 97,
+      "qclass_matches_manifest": 14,
+      "rd_true": 0,
+      "ad_true": 0,
+      "cd_true": 84,
+      "opt_true": 95,
+      "do_true": 92,
+      "n3u_present": 0,
+      "tkey_rr_present": 0
+    },
+    "22": {
+      "matched_unique_names": 63,
+      "qclass_matches_manifest": 14,
+      "rd_true": 0,
+      "ad_true": 0,
+      "cd_true": 55,
+      "opt_true": 61,
+      "do_true": 58,
+      "n3u_present": 0,
+      "tkey_rr_present": 0
+    },
+    "23": {
+      "matched_unique_names": 1,
+      "qclass_matches_manifest": 0,
+      "rd_true": 0,
+      "ad_true": 0,
+      "cd_true": 1,
+      "opt_true": 1,
+      "do_true": 1,
+      "n3u_present": 0,
+      "tkey_rr_present": 0
+    }
+  },
+  "case_packets": {
+    "1": {
+      "matching_packets": 5699,
+      "tkey_rr_present": 0,
+      "opt_present": 5668,
+      "rd_true": 0
+    },
+    "4": {
+      "matching_packets": 5569,
+      "tkey_rr_present": 0,
+      "opt_present": 5533,
+      "rd_true": 0
+    },
+    "5": {
+      "matching_packets": 5690,
+      "tkey_rr_present": 0,
+      "opt_present": 5654,
+      "rd_true": 0
+    },
+    "6": {
+      "matching_packets": 5466,
+      "tkey_rr_present": 0,
+      "opt_present": 5435,
+      "rd_true": 0
+    },
+    "7": {
+      "matching_packets": 5375,
+      "tkey_rr_present": 0,
+      "opt_present": 5343,
+      "rd_true": 1
+    },
+    "8": {
+      "matching_packets": 5340,
+      "tkey_rr_present": 0,
+      "opt_present": 5306,
+      "rd_true": 0
+    },
+    "11": {
+      "matching_packets": 6786,
+      "tkey_rr_present": 0,
+      "opt_present": 6753,
+      "rd_true": 0
+    },
+    "15": {
+      "matching_packets": 5681,
+      "tkey_rr_present": 0,
+      "opt_present": 5646,
+      "rd_true": 0
+    },
+    "18": {
+      "matching_packets": 6842,
+      "tkey_rr_present": 0,
+      "opt_present": 6815,
+      "rd_true": 0
+    },
+    "21": {
+      "matching_packets": 165,
+      "tkey_rr_present": 0,
+      "opt_present": 163,
+      "rd_true": 0
+    },
+    "22": {
+      "matching_packets": 110,
+      "tkey_rr_present": 0,
+      "opt_present": 108,
+      "rd_true": 0
+    },
+    "23": {
+      "matching_packets": 1,
+      "tkey_rr_present": 0,
+      "opt_present": 1,
+      "rd_true": 0
+    }
+  },
+  "client_errors": {
+    "1": {
+      "timeout": 594,
+      "decode_or_other_error": 22
+    },
+    "2": {
+      "timeout": 502,
+      "decode_or_other_error": 1
+    },
+    "3": {
+      "timeout": 799
+    },
+    "4": {
+      "timeout": 650
+    },
+    "5": {
+      "timeout": 668,
+      "decode_or_other_error": 22
+    },
+    "6": {
+      "timeout": 760,
+      "decode_or_other_error": 21
+    },
+    "7": {
+      "timeout": 815
+    },
+    "8": {
+      "timeout": 793
+    },
+    "9": {
+      "timeout": 600
+    },
+    "10": {
+      "timeout": 648
+    },
+    "11": {
+      "timeout": 624,
+      "decode_or_other_error": 43
+    },
+    "12": {
+      "timeout": 574,
+      "decode_or_other_error": 66
+    },
+    "13": {
+      "timeout": 442
+    },
+    "14": {
+      "timeout": 597,
+      "decode_or_other_error": 39
+    },
+    "15": {
+      "timeout": 595,
+      "decode_or_other_error": 13
+    },
+    "16": {
+      "timeout": 559
+    },
+    "17": {
+      "timeout": 462
+    },
+    "18": {
+      "timeout": 506,
+      "decode_or_other_error": 49
+    },
+    "19": {
+      "timeout": 623,
+      "decode_or_other_error": 69
+    },
+    "20": {
+      "decode_or_other_error": 1108,
+      "timeout": 627
+    },
+    "21": {
+      "timeout": 513,
+      "decode_or_other_error": 3
+    },
+    "22": {
+      "timeout": 484
+    },
+    "23": {
+      "timeout": 592
+    }
+  },
+  "udp_error_messages_without_rcode": {
+    "1": {
+      "i/o timeout": 594,
+      "dns: overflow unpacking uint16": 22
+    },
+    "2": {
+      "i/o timeout": 502,
+      "dns: overflowing header size": 1
+    },
+    "3": {
+      "i/o timeout": 799
+    },
+    "4": {
+      "i/o timeout": 650
+    },
+    "5": {
+      "i/o timeout": 668,
+      "dns: overflow unpacking uint16": 22
+    },
+    "6": {
+      "i/o timeout": 760,
+      "dns: overflow unpacking uint16": 21
+    },
+    "7": {
+      "i/o timeout": 815
+    },
+    "8": {
+      "i/o timeout": 793
+    },
+    "9": {
+      "i/o timeout": 600
+    },
+    "10": {
+      "i/o timeout": 648
+    },
+    "11": {
+      "i/o timeout": 624,
+      "dns: overflowing header size": 35,
+      "dns: overflow unpacking uint16": 7,
+      "dns: buffer size too small": 1
+    },
+    "12": {
+      "i/o timeout": 574,
+      "dns: overflowing header size": 66
+    },
+    "13": {
+      "i/o timeout": 442
+    },
+    "14": {
+      "i/o timeout": 597,
+      "dns: overflowing header size": 36,
+      "dns: overflow unpacking uint16": 3
+    },
+    "15": {
+      "i/o timeout": 595,
+      "dns: overflow unpacking uint16": 12,
+      "dns: overflowing header size": 1
+    },
+    "16": {
+      "i/o timeout": 559
+    },
+    "17": {
+      "i/o timeout": 462
+    },
+    "18": {
+      "i/o timeout": 506,
+      "dns: overflowing header size": 42,
+      "dns: overflow unpacking uint16": 6,
+      "dns: buffer size too small": 1
+    },
+    "19": {
+      "i/o timeout": 623,
+      "dns: overflowing header size": 69
+    },
+    "20": {
+      "dns: overflowing header size": 1106,
+      "i/o timeout": 627,
+      "dns: overflow unpacking uint32": 2
+    },
+    "21": {
+      "i/o timeout": 513,
+      "OPT.Option: dns: overflow unpacking opt": 3
+    },
+    "22": {
+      "i/o timeout": 484
+    },
+    "23": {
+      "i/o timeout": 592
+    }
+  },
+  "control_subset_size": 4895,
+  "tcp_audit": {
+    "main-20260922-01": {
+      "summary": {
+        "incoming_tcp_packets": 727,
+        "incoming_tcp_payload_packets": 122,
+        "incoming_tcp_streams": 127,
+        "streams_with_payload": 120,
+        "streams_with_sequence_gap": 0,
+        "streams_with_leftover_bytes": 1,
+        "complete_dns_frames": 119,
+        "decoded_dns_questions": 119,
+        "qtype:1": 43,
+        "questions_with_tkey_rr": 0,
+        "qtype:16": 48,
+        "qtype:46": 18,
+        "qtype:48": 1,
+        "qtype:50": 9,
+        "static_large_txt_questions": 43
+      },
+      "unique_case_questions": {
+        "6": {
+          "matching_questions": 1,
+          "tkey_rr_present": 0
+        },
+        "11": {
+          "matching_questions": 19,
+          "tkey_rr_present": 0
+        },
+        "18": {
+          "matching_questions": 12,
+          "tkey_rr_present": 0
+        }
+      }
+    },
+    "main-20260922-02": {
+      "summary": {
+        "incoming_tcp_packets": 1936,
+        "incoming_tcp_payload_packets": 321,
+        "incoming_tcp_streams": 345,
+        "streams_with_payload": 319,
+        "streams_with_sequence_gap": 0,
+        "streams_with_leftover_bytes": 1,
+        "complete_dns_frames": 318,
+        "decoded_dns_questions": 318,
+        "qtype:28": 1,
+        "questions_with_tkey_rr": 0,
+        "qtype:6": 4,
+        "qtype:1": 95,
+        "qtype:46": 51,
+        "qtype:50": 39,
+        "qtype:48": 2,
+        "qtype:16": 126,
+        "static_large_txt_questions": 122
+      },
+      "unique_case_questions": {
+        "11": {
+          "matching_questions": 50,
+          "tkey_rr_present": 0
+        },
+        "18": {
+          "matching_questions": 37,
+          "tkey_rr_present": 0
+        }
+      }
+    },
+    "main-20260923-03": {
+      "summary": {
+        "incoming_tcp_packets": 853,
+        "incoming_tcp_payload_packets": 142,
+        "incoming_tcp_streams": 151,
+        "streams_with_payload": 140,
+        "streams_with_sequence_gap": 0,
+        "streams_with_leftover_bytes": 5,
+        "complete_dns_frames": 135,
+        "decoded_dns_questions": 135,
+        "qtype:6": 4,
+        "questions_with_tkey_rr": 0,
+        "qtype:1": 22,
+        "qtype:46": 23,
+        "qtype:50": 13,
+        "qtype:16": 73,
+        "static_large_txt_questions": 67
+      },
+      "unique_case_questions": {
+        "11": {
+          "matching_questions": 11,
+          "tkey_rr_present": 0
+        },
+        "7": {
+          "matching_questions": 1,
+          "tkey_rr_present": 0
+        },
+        "18": {
+          "matching_questions": 9,
+          "tkey_rr_present": 0
+        }
+      }
+    },
+    "main-20260924-04": {
+      "summary": {
+        "incoming_tcp_packets": 1782,
+        "incoming_tcp_payload_packets": 297,
+        "incoming_tcp_streams": 312,
+        "streams_with_payload": 293,
+        "streams_with_sequence_gap": 0,
+        "streams_with_leftover_bytes": 0,
+        "complete_dns_frames": 293,
+        "decoded_dns_questions": 293,
+        "qtype:1": 86,
+        "questions_with_tkey_rr": 0,
+        "qtype:16": 111,
+        "qtype:6": 9,
+        "qtype:46": 44,
+        "qtype:50": 43,
+        "static_large_txt_questions": 108
+      },
+      "unique_case_questions": {
+        "11": {
+          "matching_questions": 36,
+          "tkey_rr_present": 0
+        },
+        "18": {
+          "matching_questions": 34,
+          "tkey_rr_present": 0
+        }
+      }
+    }
+  },
+  "tkey_udp_match_client": {
+    "21": {
+      "matched_names": 97,
+      "client_tkey_rr_present": 0,
+      "client_rcode:NXDOMAIN": 70,
+      "client_rcode:SERVFAIL": 15,
+      "client_rcode:FORMERR": 4,
+      "client_rcode:none": 5,
+      "client_rcode:NOERROR": 1,
+      "client_rcode:NOTIMP": 2
+    },
+    "22": {
+      "matched_names": 63,
+      "client_tkey_rr_present": 3,
+      "client_rcode:SERVFAIL": 13,
+      "client_rcode:NXDOMAIN": 38,
+      "client_rcode:none": 8,
+      "client_rcode:NOERROR": 1,
+      "client_rcode:FORMERR": 3,
+      "client_tkey_rr_rcode:FORMERR": 2,
+      "client_tkey_rr_rcode:NXDOMAIN": 1
+    },
+    "23": {
+      "matched_names": 1,
+      "client_tkey_rr_present": 0,
+      "client_rcode:NXDOMAIN": 1
+    }
+  },
+  "client_groups": {
+    "all:1": {
+      "total": 6232,
+      "rcode:NOERROR": 5560,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 3722,
+      "answer:NSEC3": 0,
+      "rcode:none": 616,
+      "rcode:FORMERR": 22,
+      "rcode:SERVFAIL": 15,
+      "rcode:REFUSED": 12,
+      "rcode:NXDOMAIN": 7
+    },
+    "controls_pass:1": {
+      "total": 4895,
+      "rcode:NOERROR": 4895,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 3508,
+      "answer:NSEC3": 0
+    },
+    "all:2": {
+      "total": 6232,
+      "rcode:NOERROR": 5678,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 3790,
+      "answer:NSEC3": 0,
+      "rcode:none": 503,
+      "rcode:FORMERR": 21,
+      "rcode:SERVFAIL": 14,
+      "rcode:REFUSED": 10,
+      "rcode:NXDOMAIN": 6
+    },
+    "controls_pass:2": {
+      "total": 4895,
+      "rcode:NOERROR": 4895,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 3504,
+      "answer:NSEC3": 0
+    },
+    "all:3": {
+      "total": 6232,
+      "rcode:NOERROR": 5379,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 3716,
+      "answer:NSEC3": 0,
+      "rcode:none": 799,
+      "rcode:FORMERR": 23,
+      "rcode:REFUSED": 14,
+      "rcode:NXDOMAIN": 2,
+      "rcode:SERVFAIL": 15
+    },
+    "controls_pass:3": {
+      "total": 4895,
+      "rcode:NOERROR": 4895,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 3518,
+      "answer:NSEC3": 0
+    },
+    "all:4": {
+      "total": 6232,
+      "rcode:NOERROR": 5525,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 650,
+      "rcode:FORMERR": 22,
+      "rcode:SERVFAIL": 17,
+      "rcode:REFUSED": 10,
+      "rcode:NXDOMAIN": 8
+    },
+    "controls_pass:4": {
+      "total": 4895,
+      "rcode:NOERROR": 4705,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 188,
+      "rcode:SERVFAIL": 2
+    },
+    "all:5": {
+      "total": 6232,
+      "rcode:NOERROR": 5486,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 3773,
+      "answer:NSEC3": 0,
+      "rcode:none": 690,
+      "rcode:FORMERR": 22,
+      "rcode:REFUSED": 10,
+      "rcode:NXDOMAIN": 6,
+      "rcode:NOTIMP": 6,
+      "rcode:SERVFAIL": 12
+    },
+    "controls_pass:5": {
+      "total": 4895,
+      "rcode:NOERROR": 4678,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 3479,
+      "answer:NSEC3": 0,
+      "rcode:none": 206,
+      "rcode:NOTIMP": 6,
+      "rcode:SERVFAIL": 4,
+      "rcode:REFUSED": 1
+    },
+    "all:6": {
+      "total": 6232,
+      "rcode:NOERROR": 5396,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 3687,
+      "answer:NSEC3": 0,
+      "rcode:none": 781,
+      "rcode:FORMERR": 21,
+      "rcode:SERVFAIL": 19,
+      "rcode:REFUSED": 13,
+      "rcode:NXDOMAIN": 2
+    },
+    "controls_pass:6": {
+      "total": 4895,
+      "rcode:NOERROR": 4612,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 3402,
+      "answer:NSEC3": 0,
+      "rcode:none": 269,
+      "rcode:SERVFAIL": 8,
+      "rcode:REFUSED": 6
+    },
+    "all:7": {
+      "total": 6232,
+      "rcode:NOERROR": 5353,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 815,
+      "rcode:FORMERR": 21,
+      "rcode:SERVFAIL": 21,
+      "rcode:REFUSED": 13,
+      "rcode:NXDOMAIN": 9
+    },
+    "controls_pass:7": {
+      "total": 4895,
+      "rcode:NOERROR": 4557,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 329,
+      "rcode:SERVFAIL": 7,
+      "rcode:REFUSED": 2
+    },
+    "all:8": {
+      "total": 6232,
+      "rcode:NOERROR": 5352,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 793,
+      "rcode:FORMERR": 22,
+      "rcode:REFUSED": 18,
+      "rcode:NXDOMAIN": 8,
+      "rcode:SERVFAIL": 38,
+      "rcode:NOTIMP": 1
+    },
+    "controls_pass:8": {
+      "total": 4895,
+      "rcode:NOERROR": 4508,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 356,
+      "rcode:SERVFAIL": 22,
+      "rcode:REFUSED": 8,
+      "rcode:NOTIMP": 1
+    },
+    "all:9": {
+      "total": 6232,
+      "rcode:NOERROR": 5559,
+      "answer:DNSKEY": 5558,
+      "answer:DS": 0,
+      "answer:RRSIG": 3783,
+      "answer:NSEC3": 0,
+      "rcode:none": 600,
+      "rcode:FORMERR": 22,
+      "rcode:SERVFAIL": 31,
+      "rcode:REFUSED": 14,
+      "rcode:NOTIMP": 6
+    },
+    "controls_pass:9": {
+      "total": 4895,
+      "rcode:NOERROR": 4621,
+      "answer:DNSKEY": 4621,
+      "answer:DS": 0,
+      "answer:RRSIG": 3403,
+      "answer:NSEC3": 0,
+      "rcode:none": 249,
+      "rcode:SERVFAIL": 15,
+      "rcode:REFUSED": 8,
+      "rcode:NOTIMP": 2
+    },
+    "all:10": {
+      "total": 6232,
+      "rcode:NOERROR": 5527,
+      "answer:DNSKEY": 0,
+      "answer:DS": 5526,
+      "answer:RRSIG": 3815,
+      "answer:NSEC3": 0,
+      "rcode:none": 648,
+      "rcode:FORMERR": 22,
+      "rcode:REFUSED": 13,
+      "rcode:SERVFAIL": 15,
+      "rcode:NXDOMAIN": 1,
+      "rcode:NOTIMP": 6
+    },
+    "controls_pass:10": {
+      "total": 4895,
+      "rcode:NOERROR": 4644,
+      "answer:DNSKEY": 0,
+      "answer:DS": 4644,
+      "answer:RRSIG": 3420,
+      "answer:NSEC3": 0,
+      "rcode:none": 233,
+      "rcode:SERVFAIL": 10,
+      "rcode:REFUSED": 6,
+      "rcode:NOTIMP": 2
+    },
+    "all:11": {
+      "total": 6232,
+      "rcode:NXDOMAIN": 5494,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 667,
+      "rcode:FORMERR": 22,
+      "rcode:SERVFAIL": 36,
+      "rcode:REFUSED": 11,
+      "rcode:NOERROR": 2
+    },
+    "controls_pass:11": {
+      "total": 4895,
+      "rcode:NXDOMAIN": 4652,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 212,
+      "rcode:NOERROR": 1,
+      "rcode:REFUSED": 3,
+      "rcode:SERVFAIL": 27
+    },
+    "all:12": {
+      "total": 6232,
+      "rcode:NOERROR": 5050,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 4723,
+      "answer:NSEC3": 0,
+      "rcode:none": 640,
+      "rcode:NOTIMP": 15,
+      "rcode:FORMERR": 22,
+      "rcode:SERVFAIL": 401,
+      "rcode:REFUSED": 104
+    },
+    "controls_pass:12": {
+      "total": 4895,
+      "rcode:NOERROR": 4223,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 3970,
+      "answer:NSEC3": 0,
+      "rcode:none": 254,
+      "rcode:NOTIMP": 11,
+      "rcode:SERVFAIL": 314,
+      "rcode:REFUSED": 93
+    },
+    "all:13": {
+      "total": 6232,
+      "rcode:NOERROR": 5026,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 442,
+      "rcode:NOTIMP": 16,
+      "rcode:SERVFAIL": 712,
+      "rcode:FORMERR": 22,
+      "rcode:REFUSED": 14
+    },
+    "controls_pass:13": {
+      "total": 4895,
+      "rcode:NOERROR": 4160,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:NOTIMP": 11,
+      "rcode:SERVFAIL": 577,
+      "rcode:none": 140,
+      "rcode:REFUSED": 7
+    },
+    "all:14": {
+      "total": 6232,
+      "rcode:NXDOMAIN": 5221,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 636,
+      "rcode:NOTIMP": 16,
+      "rcode:FORMERR": 22,
+      "rcode:SERVFAIL": 323,
+      "rcode:REFUSED": 12,
+      "rcode:NOERROR": 2
+    },
+    "controls_pass:14": {
+      "total": 4895,
+      "rcode:NXDOMAIN": 4375,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:NOTIMP": 11,
+      "rcode:SERVFAIL": 276,
+      "rcode:none": 226,
+      "rcode:REFUSED": 6,
+      "rcode:NOERROR": 1
+    },
+    "all:15": {
+      "total": 6232,
+      "rcode:NOERROR": 5589,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 608,
+      "rcode:REFUSED": 12,
+      "rcode:NXDOMAIN": 8,
+      "rcode:SERVFAIL": 15
+    },
+    "controls_pass:15": {
+      "total": 4895,
+      "rcode:NOERROR": 4678,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 206,
+      "rcode:REFUSED": 3,
+      "rcode:SERVFAIL": 8
+    },
+    "all:16": {
+      "total": 6232,
+      "rcode:NOERROR": 5543,
+      "answer:DNSKEY": 5541,
+      "answer:DS": 0,
+      "answer:RRSIG": 3750,
+      "answer:NSEC3": 0,
+      "rcode:none": 559,
+      "rcode:FORMERR": 92,
+      "rcode:REFUSED": 14,
+      "rcode:SERVFAIL": 18,
+      "rcode:NOTIMP": 6
+    },
+    "controls_pass:16": {
+      "total": 4895,
+      "rcode:NOERROR": 4650,
+      "answer:DNSKEY": 4649,
+      "answer:DS": 0,
+      "answer:RRSIG": 3385,
+      "answer:NSEC3": 0,
+      "rcode:none": 190,
+      "rcode:FORMERR": 41,
+      "rcode:SERVFAIL": 6,
+      "rcode:REFUSED": 6,
+      "rcode:NOTIMP": 2
+    },
+    "all:17": {
+      "total": 6232,
+      "rcode:NOERROR": 5640,
+      "answer:DNSKEY": 0,
+      "answer:DS": 5639,
+      "answer:RRSIG": 3769,
+      "answer:NSEC3": 0,
+      "rcode:none": 462,
+      "rcode:FORMERR": 93,
+      "rcode:SERVFAIL": 20,
+      "rcode:REFUSED": 10,
+      "rcode:NXDOMAIN": 1,
+      "rcode:NOTIMP": 6
+    },
+    "controls_pass:17": {
+      "total": 4895,
+      "rcode:NOERROR": 4693,
+      "answer:DNSKEY": 0,
+      "answer:DS": 4693,
+      "answer:RRSIG": 3408,
+      "answer:NSEC3": 0,
+      "rcode:none": 142,
+      "rcode:SERVFAIL": 11,
+      "rcode:FORMERR": 45,
+      "rcode:REFUSED": 2,
+      "rcode:NOTIMP": 2
+    },
+    "all:18": {
+      "total": 6232,
+      "rcode:NXDOMAIN": 5531,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 555,
+      "rcode:FORMERR": 97,
+      "rcode:REFUSED": 9,
+      "rcode:NOERROR": 2,
+      "rcode:SERVFAIL": 38
+    },
+    "controls_pass:18": {
+      "total": 4895,
+      "rcode:NXDOMAIN": 4630,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 185,
+      "rcode:FORMERR": 48,
+      "rcode:NOERROR": 1,
+      "rcode:SERVFAIL": 30,
+      "rcode:REFUSED": 1
+    },
+    "all:19": {
+      "total": 6232,
+      "rcode:NOERROR": 5471,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 3726,
+      "answer:NSEC3": 0,
+      "rcode:none": 692,
+      "rcode:FORMERR": 22,
+      "rcode:SERVFAIL": 38,
+      "rcode:REFUSED": 9
+    },
+    "controls_pass:19": {
+      "total": 4895,
+      "rcode:NOERROR": 4575,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 3369,
+      "answer:NSEC3": 0,
+      "rcode:none": 294,
+      "rcode:SERVFAIL": 24,
+      "rcode:REFUSED": 2
+    },
+    "all:20": {
+      "total": 6232,
+      "rcode:NOERROR": 4430,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 3469,
+      "answer:NSEC3": 0,
+      "rcode:none": 1735,
+      "rcode:FORMERR": 22,
+      "rcode:SERVFAIL": 27,
+      "rcode:REFUSED": 18
+    },
+    "controls_pass:20": {
+      "total": 4895,
+      "rcode:NOERROR": 3947,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 3181,
+      "answer:NSEC3": 0,
+      "rcode:none": 917,
+      "rcode:REFUSED": 9,
+      "rcode:SERVFAIL": 22
+    },
+    "all:21": {
+      "total": 6232,
+      "rcode:NOTIMP": 2539,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 516,
+      "rcode:FORMERR": 1832,
+      "rcode:REFUSED": 322,
+      "rcode:SERVFAIL": 940,
+      "rcode:NXDOMAIN": 82,
+      "rcode:NOERROR": 1
+    },
+    "controls_pass:21": {
+      "total": 4895,
+      "rcode:NOTIMP": 1884,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 248,
+      "rcode:FORMERR": 1607,
+      "rcode:SERVFAIL": 808,
+      "rcode:NXDOMAIN": 61,
+      "rcode:REFUSED": 286,
+      "rcode:NOERROR": 1
+    },
+    "all:22": {
+      "total": 6232,
+      "rcode:NOTIMP": 2553,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 484,
+      "rcode:REFUSED": 808,
+      "rcode:SERVFAIL": 1186,
+      "rcode:FORMERR": 1132,
+      "rcode:NXDOMAIN": 43,
+      "rcode:NOERROR": 26
+    },
+    "controls_pass:22": {
+      "total": 4895,
+      "rcode:NOTIMP": 1884,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:REFUSED": 698,
+      "rcode:none": 233,
+      "rcode:FORMERR": 1022,
+      "rcode:SERVFAIL": 1005,
+      "rcode:NXDOMAIN": 32,
+      "rcode:NOERROR": 21
+    },
+    "all:23": {
+      "total": 6232,
+      "rcode:NOTIMP": 2542,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 592,
+      "rcode:REFUSED": 917,
+      "rcode:SERVFAIL": 1002,
+      "rcode:FORMERR": 1131,
+      "rcode:NOERROR": 42,
+      "rcode:NXDOMAIN": 6
+    },
+    "controls_pass:23": {
+      "total": 4895,
+      "rcode:NOTIMP": 1881,
+      "answer:DNSKEY": 0,
+      "answer:DS": 0,
+      "answer:RRSIG": 0,
+      "answer:NSEC3": 0,
+      "rcode:none": 303,
+      "rcode:REFUSED": 804,
+      "rcode:FORMERR": 1022,
+      "rcode:SERVFAIL": 848,
+      "rcode:NOERROR": 37
+    }
+  },
+  "tkey_client": {
+    "21": {
+      "total": 6232
+    },
+    "22": {
+      "total": 6232,
+      "tkey_rr_present": 780,
+      "rcode:REFUSED": 274,
+      "key_size:4": 755,
+      "mode:3": 780,
+      "algorithm:gss-tsig.": 780,
+      "section:additional_inferred": 755,
+      "rcode:FORMERR": 209,
+      "rcode:SERVFAIL": 2,
+      "rcode:NOTIMP": 269,
+      "rcode:NOERROR": 25,
+      "key_size:0": 25,
+      "section:answer": 25,
+      "rcode:NXDOMAIN": 1
+    },
+    "23": {
+      "total": 6232,
+      "tkey_rr_present": 787,
+      "rcode:REFUSED": 276,
+      "key_size:4": 762,
+      "mode:3": 787,
+      "algorithm:gss-tsig.": 787,
+      "section:additional_inferred": 762,
+      "rcode:FORMERR": 214,
+      "rcode:SERVFAIL": 3,
+      "rcode:NOTIMP": 269,
+      "rcode:NOERROR": 25,
+      "key_size:0": 25,
+      "section:answer": 25
+    },
+    "both_rr_bearing_cases": {
+      "same_address_rr_in_both": 761
+    }
+  }
+}

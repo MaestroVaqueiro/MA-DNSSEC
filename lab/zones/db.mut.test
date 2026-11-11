@@ -1,0 +1,100 @@
+$ORIGIN mut.test.
+$TTL 60
+
+@   IN  SOA ns.mut.test. admin.mut.test. (
+        2026073002
+        60
+        60
+        3600
+        60
+)
+
+@       IN  NS      ns.mut.test.
+
+ns      IN  A       192.0.2.53
+
+normal  IN  A       192.0.2.10
+
+tc      IN  A       192.0.2.20
+
+txt     IN  TXT     "controlled dnssec txt response"
+
+short   IN  A       192.0.2.11
+
+a.b.c   IN  A       192.0.2.12
+
+longlabel123456789012345678901234567890  IN  A   192.0.2.13
+
+normal  IN  AAAA    2001:db8::10
+
+short   IN  AAAA    2001:db8::11
+
+seq-000001      IN  A   192.0.2.31
+
+seq-000002      IN  A   192.0.2.32
+
+hex-4f2a91be    IN  A   192.0.2.33
+
+b32-mfrggzdfmztwq2lk  IN  A   192.0.2.34
+
+seq-000001              IN  TXT     "seq text one"
+
+seq-000002              IN  TXT     "seq text two"
+
+hex-4f2a91be            IN  TXT     "hex text"
+
+b32-mfrggzdfmztwq2lk    IN  TXT     "base32 text"
+
+child                   IN  NS      ns.child.mut.test.
+
+ns.child                IN  A       127.0.0.2
+
+child.mut.test. IN DS 62855 13 2 86A45D58FAE0E297B85F4B04A9DB08481BF1F178DA8818A03093B74BE3CF7217
+
+nsec3       IN NS ns.nsec3.mut.test.
+
+ns.nsec3   IN A  127.0.0.2
+
+nsec3.mut.test. IN DS 9780 13 2 BF2664965FEE10EAD21FDEC9860533A090E123B68A65153017299A7A9A0862F1
+
+; Standard QTYPE extension records
+cname   IN  CNAME   normal.mut.test.
+
+; Controlled EDE NOERROR test record
+ede-noerror IN A 192.0.2.60
+
+; Positive, signed TXT records for isolated QNAME-structure measurements.
+; Mixed-case queries use the same semantic owner as caseprobe.
+caseprobe       IN TXT "qname case-preservation baseline"
+len8abc1        IN TXT "qname short-label baseline"
+lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll IN TXT "qname maximum-label boundary"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa IN TXT "qname low-entropy payload"
+mfrggzdfmztwq2lkizduqskkjnge2tsp IN TXT "qname high-entropy payload"
+mfrggzdf.mztwq2lk.izduqskk.jnge2tsp IN TXT "qname split high-entropy payload"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc.dddddddddddddddddddddddddddddddddddddddddddddddddddd IN TXT "qname maximum-total-length boundary"
+
+; Explicit intermediate owners for deep QNAME measurements.
+; TXT is present so resolver-generated A lookups receive compact, signed NODATA.
+jnge2tsp IN TXT "qname intermediate owner"
+izduqskk.jnge2tsp IN TXT "qname intermediate owner"
+mztwq2lk.izduqskk.jnge2tsp IN TXT "qname intermediate owner"
+dddddddddddddddddddddddddddddddddddddddddddddddddddd IN TXT "qname intermediate owner"
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc.dddddddddddddddddddddddddddddddddddddddddddddddddddd IN TXT "qname intermediate owner"
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc.dddddddddddddddddddddddddddddddddddddddddddddddddddd IN TXT "qname intermediate owner"
+
+mailroute  IN  MX      10 mail.mut.test.
+mail       IN  A       192.0.2.25
+_dns._udp  IN  SRV     0 5 53 ns.mut.test.
+
+*.wild     IN  A       192.0.2.77
+
+ecs-r1     IN  A       192.0.2.81
+ecs-r2     IN  A       192.0.2.82
+ecs-r3     IN  A       192.0.2.83
+ecs-r4     IN  A       192.0.2.84
+ecs-r5     IN  A       192.0.2.85
+
+normal     IN  TXT     "dnssec-large-01-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+normal     IN  TXT     "dnssec-large-02-BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+normal     IN  TXT     "dnssec-large-03-CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
+normal     IN  TXT     "dnssec-large-04-DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"

@@ -1,0 +1,20 @@
+$ORIGIN child.mut.test.
+$TTL 60
+
+@   IN  SOA ns.child.mut.test. admin.child.mut.test. (
+        2026071301
+        60
+        60
+        3600
+        60
+)
+
+@       IN  NS      ns.child.mut.test.
+ns      IN  A       127.0.0.2
+normal  IN  A       192.0.2.210
+txt     IN  TXT     "child text response"
+
+
+; CDS/CDNSKEY test records
+child.mut.test. IN CDS 62855 13 2 86A45D58FAE0E297B85F4B04A9DB08481BF1F178DA8818A03093B74BE3CF7217
+child.mut.test. IN CDNSKEY 257 3 13 YyW/F9XrMxB6E1m3AwHtlx3Yjgc6k+/KCDTBTKeGgzrsSzaN+K5rHxg0 AedugVc75L6AN5iYEGbZNx2Gjc4+XA==

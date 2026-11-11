@@ -1,0 +1,14 @@
+$ORIGIN child.test.s.inet-studies.net.
+$TTL 60
+
+@ IN SOA ns1.s.inet-studies.net. admin.s.inet-studies.net. (
+    2026091401
+    60
+    60
+    3600
+    60
+)
+
+@      IN NS ns1.s.inet-studies.net.
+normal IN A  192.0.2.210
+txt    IN TXT "child text response"

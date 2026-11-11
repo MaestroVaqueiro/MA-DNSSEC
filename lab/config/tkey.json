@@ -1,0 +1,456 @@
+{
+  "profile_type": "case_based_target",
+  "mutation_family": "unified_query_side_dnssec_mutation",
+  "description": "One-repetition TKEY RR profile used in both resolver modes.",
+  "timeout_ms": 3000,
+  "repetitions": 1,
+  "drain_ms": 350,
+  "reject_wire_equivalent_duplicates": true,
+  "resolvers": [
+    "bind",
+    "unbound",
+    "powerdns"
+  ],
+  "defaults": {
+    "transport": "udp",
+    "flags": {
+      "qr": false,
+      "aa": false,
+      "tc": false,
+      "rd": true,
+      "ra": false,
+      "z": false,
+      "cd": false,
+      "ad": false,
+      "opcode": 0,
+      "rcode": 0
+    },
+    "edns": {
+      "present": true,
+      "version": 0,
+      "udp_size": 1232,
+      "do": true,
+      "z_flags": 0,
+      "extended_rcode": 0,
+      "owner_name": ".",
+      "opt_count": 1,
+      "options": []
+    },
+    "cache_strategy": "flush"
+  },
+  "profile_statistics": {
+    "profile_cases": 8,
+    "variants_per_resolver": 8,
+    "resolver_count": 3,
+    "expected_client_events": 24,
+    "expected_events_both_modes": 48,
+    "baseline_cases": 0,
+    "mutation_cases": 8,
+    "core_cases": 0,
+    "interaction_cases": 0,
+    "exploratory_cases": 8
+  },
+  "cases": [
+    {
+      "case_id": "qtype_tkey",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "TKEY",
+      "qclass": "IN",
+      "research_dimension": "dnssec_and_control_qtypes",
+      "comparison_group": "qtype",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "QTYPE mutation to TKEY.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_tkey",
+          "description": "QTYPE mutation to TKEY.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "tkey_context_no_rr_rd1",
+      "family": "tkey",
+      "priority": 1,
+      "qname": "tkey-key.mut.test.",
+      "qtype": "TKEY",
+      "qclass": "ANY",
+      "research_dimension": "tkey_rr_permeability",
+      "comparison_group": "tkey",
+      "test_tier": "exploratory",
+      "reference_case_id": "qtype_tkey",
+      "changed_properties": [
+        "qclass",
+        "flags.rd",
+        "edns.present",
+        "qname"
+      ],
+      "motivation": "TKEY question with QCLASS=ANY and RD=1 but without the required TKEY RR.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {
+        "tkey_permeability_relevant": true,
+        "tkey_rr_expected": false
+      },
+      "variants": [
+        {
+          "variant_id": "tkey_context_no_rr_rd1",
+          "description": "TKEY question with QCLASS=ANY and RD=1 but without the required TKEY RR.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {
+            "tkey_permeability_relevant": true,
+            "tkey_rr_expected": false
+          },
+          "edns": {
+            "present": false
+          },
+          "flags": {
+            "rd": true
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "tkey_rr_gss_rd1",
+      "family": "tkey",
+      "priority": 1,
+      "qname": "tkey-key.mut.test.",
+      "qtype": "TKEY",
+      "qclass": "ANY",
+      "research_dimension": "tkey_rr_permeability",
+      "comparison_group": "tkey",
+      "test_tier": "exploratory",
+      "reference_case_id": "tkey_context_no_rr_rd1",
+      "changed_properties": [
+        "additional.tkey"
+      ],
+      "motivation": "GSS-API TKEY RR in Additional with RD=1 as a recursive-path permeability probe.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {
+        "tkey_permeability_relevant": true,
+        "tkey_rr_expected": true
+      },
+      "variants": [
+        {
+          "variant_id": "tkey_rr_gss_rd1",
+          "description": "GSS-API TKEY RR in Additional with RD=1 as a recursive-path permeability probe.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {
+            "tkey_permeability_relevant": true,
+            "tkey_rr_expected": true
+          },
+          "edns": {
+            "present": false
+          },
+          "flags": {
+            "rd": true
+          },
+          "tkey": {
+            "include_rr": true,
+            "section": "additional",
+            "owner_name": "tkey-key.mut.test.",
+            "rr_class": "ANY",
+            "ttl": 0,
+            "count": 1,
+            "algorithm": "gss-tsig.",
+            "mode": 3,
+            "inception": 0,
+            "expiration": 0,
+            "error": 0,
+            "key_data_hex": "01020304",
+            "other_data_hex": ""
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "tkey_rr_gss_rd0",
+      "family": "tkey",
+      "priority": 1,
+      "qname": "tkey-key.mut.test.",
+      "qtype": "TKEY",
+      "qclass": "ANY",
+      "research_dimension": "tkey_rr_permeability",
+      "comparison_group": "tkey",
+      "test_tier": "exploratory",
+      "reference_case_id": "tkey_rr_gss_rd1",
+      "changed_properties": [
+        "flags.rd"
+      ],
+      "motivation": "GSS-API TKEY RR in Additional with the RFC-recommended RD=0 setting.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {
+        "tkey_permeability_relevant": true,
+        "tkey_rr_expected": true
+      },
+      "variants": [
+        {
+          "variant_id": "tkey_rr_gss_rd0",
+          "description": "GSS-API TKEY RR in Additional with the RFC-recommended RD=0 setting.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {
+            "tkey_permeability_relevant": true,
+            "tkey_rr_expected": true
+          },
+          "edns": {
+            "present": false
+          },
+          "flags": {
+            "rd": false
+          },
+          "tkey": {
+            "include_rr": true,
+            "section": "additional",
+            "owner_name": "tkey-key.mut.test.",
+            "rr_class": "ANY",
+            "ttl": 0,
+            "count": 1,
+            "algorithm": "gss-tsig.",
+            "mode": 3,
+            "inception": 0,
+            "expiration": 0,
+            "error": 0,
+            "key_data_hex": "01020304",
+            "other_data_hex": ""
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "tkey_rr_owner",
+      "family": "tkey",
+      "priority": 1,
+      "qname": "tkey-key.mut.test.",
+      "qtype": "TKEY",
+      "qclass": "ANY",
+      "research_dimension": "tkey_rr_permeability",
+      "comparison_group": "tkey",
+      "test_tier": "exploratory",
+      "reference_case_id": "tkey_rr_gss_rd1",
+      "changed_properties": [
+        "tkey.owner_name"
+      ],
+      "motivation": "Change only the TKEY RR owner name in the RD=1 permeability context.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {
+        "tkey_permeability_relevant": true,
+        "tkey_rr_expected": true
+      },
+      "variants": [
+        {
+          "variant_id": "tkey_rr_owner",
+          "description": "Change only the TKEY RR owner name in the RD=1 permeability context.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {
+            "tkey_permeability_relevant": true,
+            "tkey_rr_expected": true
+          },
+          "edns": {
+            "present": false
+          },
+          "flags": {
+            "rd": true
+          },
+          "tkey": {
+            "include_rr": true,
+            "section": "additional",
+            "owner_name": "alternate-key.mut.test.",
+            "rr_class": "ANY",
+            "ttl": 0,
+            "count": 1,
+            "algorithm": "gss-tsig.",
+            "mode": 3,
+            "inception": 0,
+            "expiration": 0,
+            "error": 0,
+            "key_data_hex": "01020304",
+            "other_data_hex": ""
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "tkey_rr_algorithm",
+      "family": "tkey",
+      "priority": 1,
+      "qname": "tkey-key.mut.test.",
+      "qtype": "TKEY",
+      "qclass": "ANY",
+      "research_dimension": "tkey_rr_permeability",
+      "comparison_group": "tkey",
+      "test_tier": "exploratory",
+      "reference_case_id": "tkey_rr_gss_rd1",
+      "changed_properties": [
+        "tkey.algorithm"
+      ],
+      "motivation": "Change only the TKEY algorithm name from gss-tsig. to hmac-sha256.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {
+        "tkey_permeability_relevant": true,
+        "tkey_rr_expected": true
+      },
+      "variants": [
+        {
+          "variant_id": "tkey_rr_algorithm",
+          "description": "Change only the TKEY algorithm name from gss-tsig. to hmac-sha256.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {
+            "tkey_permeability_relevant": true,
+            "tkey_rr_expected": true
+          },
+          "edns": {
+            "present": false
+          },
+          "flags": {
+            "rd": true
+          },
+          "tkey": {
+            "include_rr": true,
+            "section": "additional",
+            "owner_name": "tkey-key.mut.test.",
+            "rr_class": "ANY",
+            "ttl": 0,
+            "count": 1,
+            "algorithm": "hmac-sha256.",
+            "mode": 3,
+            "inception": 0,
+            "expiration": 0,
+            "error": 0,
+            "key_data_hex": "01020304",
+            "other_data_hex": ""
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "tkey_rr_mode_unknown",
+      "family": "tkey",
+      "priority": 1,
+      "qname": "tkey-key.mut.test.",
+      "qtype": "TKEY",
+      "qclass": "ANY",
+      "research_dimension": "tkey_rr_permeability",
+      "comparison_group": "tkey",
+      "test_tier": "exploratory",
+      "reference_case_id": "tkey_rr_gss_rd1",
+      "changed_properties": [
+        "tkey.mode"
+      ],
+      "motivation": "Change only the TKEY mode from GSS-API mode 3 to unsupported mode 65000.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {
+        "tkey_permeability_relevant": true,
+        "tkey_rr_expected": true
+      },
+      "variants": [
+        {
+          "variant_id": "tkey_rr_mode_unknown",
+          "description": "Change only the TKEY mode from GSS-API mode 3 to unsupported mode 65000.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {
+            "tkey_permeability_relevant": true,
+            "tkey_rr_expected": true
+          },
+          "edns": {
+            "present": false
+          },
+          "flags": {
+            "rd": true
+          },
+          "tkey": {
+            "include_rr": true,
+            "section": "additional",
+            "owner_name": "tkey-key.mut.test.",
+            "rr_class": "ANY",
+            "ttl": 0,
+            "count": 1,
+            "algorithm": "gss-tsig.",
+            "mode": 65000,
+            "inception": 0,
+            "expiration": 0,
+            "error": 0,
+            "key_data_hex": "01020304",
+            "other_data_hex": ""
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "tkey_rr_payload",
+      "family": "tkey",
+      "priority": 1,
+      "qname": "tkey-key.mut.test.",
+      "qtype": "TKEY",
+      "qclass": "ANY",
+      "research_dimension": "tkey_rr_permeability",
+      "comparison_group": "tkey",
+      "test_tier": "exploratory",
+      "reference_case_id": "tkey_rr_gss_rd1",
+      "changed_properties": [
+        "tkey.key_data"
+      ],
+      "motivation": "Change only the opaque TKEY key-data payload to a recognizable permeability marker.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {
+        "tkey_permeability_relevant": true,
+        "tkey_rr_expected": true
+      },
+      "variants": [
+        {
+          "variant_id": "tkey_rr_payload",
+          "description": "Change only the opaque TKEY key-data payload to a recognizable permeability marker.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {
+            "tkey_permeability_relevant": true,
+            "tkey_rr_expected": true
+          },
+          "edns": {
+            "present": false
+          },
+          "flags": {
+            "rd": true
+          },
+          "tkey": {
+            "include_rr": true,
+            "section": "additional",
+            "owner_name": "tkey-key.mut.test.",
+            "rr_class": "ANY",
+            "ttl": 0,
+            "count": 1,
+            "algorithm": "gss-tsig.",
+            "mode": 3,
+            "inception": 0,
+            "expiration": 0,
+            "error": 0,
+            "key_data_hex": "544b45592d5045524d454142494c495459",
+            "other_data_hex": ""
+          }
+        }
+      ]
+    }
+  ]
+}

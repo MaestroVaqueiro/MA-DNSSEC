@@ -1,0 +1,134 @@
+{
+  "profile_type": "case_based_target",
+  "mutation_family": "unified_query_side_dnssec_mutation",
+  "description": "Bounded confirmation of positive CDS and CDNSKEY RRsets at the signed child apex, with the A query at the same owner as the reference case.",
+  "timeout_ms": 3000,
+  "repetitions": 5,
+  "drain_ms": 350,
+  "reject_wire_equivalent_duplicates": true,
+  "resolvers": [
+    "bind",
+    "unbound",
+    "powerdns"
+  ],
+  "defaults": {
+    "transport": "udp",
+    "flags": {
+      "qr": false,
+      "aa": false,
+      "tc": false,
+      "rd": true,
+      "ra": false,
+      "z": false,
+      "cd": false,
+      "ad": false,
+      "opcode": 0,
+      "rcode": 0
+    },
+    "edns": {
+      "present": true,
+      "version": 0,
+      "udp_size": 1232,
+      "do": true,
+      "z_flags": 0,
+      "extended_rcode": 0,
+      "owner_name": ".",
+      "opt_count": 1,
+      "options": []
+    },
+    "cache_strategy": "flush"
+  },
+  "profile_statistics": {
+    "case_count": 3,
+    "variants_per_case": 1,
+    "repetitions": 5,
+    "resolver_count": 3,
+    "expected_client_events": 45
+  },
+  "cases": [
+    {
+      "case_id": "ctx_child_apex_a",
+      "family": "qname",
+      "priority": 1,
+      "qname": "child.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "dnssec_owner_context",
+      "comparison_group": "qname",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qname"
+      ],
+      "motivation": "A-query context baseline at the signed child apex.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "ctx_child_apex_a",
+          "description": "A-query context baseline at the signed child apex.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_cds_child_apex",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "child.mut.test.",
+      "qtype": "CDS",
+      "qclass": "IN",
+      "research_dimension": "dnssec_owner_context",
+      "comparison_group": "qtype",
+      "test_tier": "core",
+      "reference_case_id": "ctx_child_apex_a",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "CDS at the signed child-zone apex.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_cds_child_apex",
+          "description": "CDS at the signed child-zone apex.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_cdnskey_child_apex",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "child.mut.test.",
+      "qtype": "CDNSKEY",
+      "qclass": "IN",
+      "research_dimension": "dnssec_owner_context",
+      "comparison_group": "qtype",
+      "test_tier": "core",
+      "reference_case_id": "ctx_child_apex_a",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "CDNSKEY at the signed child-zone apex.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_cdnskey_child_apex",
+          "description": "CDNSKEY at the signed child-zone apex.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    }
+  ]
+}

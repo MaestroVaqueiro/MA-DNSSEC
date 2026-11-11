@@ -1,0 +1,4018 @@
+{
+  "profile_type": "case_based_target",
+  "mutation_family": "unified_query_side_dnssec_mutation",
+  "description": "120-case DNS/DNSSEC query catalog used in both resolver modes.",
+  "timeout_ms": 3000,
+  "repetitions": 5,
+  "drain_ms": 350,
+  "reject_wire_equivalent_duplicates": true,
+  "resolvers": [
+    "bind",
+    "unbound",
+    "powerdns"
+  ],
+  "defaults": {
+    "transport": "udp",
+    "flags": {
+      "qr": false,
+      "aa": false,
+      "tc": false,
+      "rd": true,
+      "ra": false,
+      "z": false,
+      "cd": false,
+      "ad": false,
+      "opcode": 0,
+      "rcode": 0
+    },
+    "edns": {
+      "present": true,
+      "version": 0,
+      "udp_size": 1232,
+      "do": true,
+      "z_flags": 0,
+      "extended_rcode": 0,
+      "owner_name": ".",
+      "opt_count": 1,
+      "options": []
+    },
+    "cache_strategy": "flush"
+  },
+  "profile_statistics": {
+    "profile_cases": 120,
+    "variants_per_resolver": 120,
+    "resolver_count": 3,
+    "expected_client_events": 1800,
+    "expected_events_both_modes": 3600,
+    "baseline_cases": 5,
+    "mutation_cases": 119,
+    "core_cases": 39,
+    "interaction_cases": 18,
+    "exploratory_cases": 63
+  },
+  "cases": [
+    {
+      "case_id": "baseline_dnssec_query",
+      "family": "baseline",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "baseline",
+      "comparison_group": "baseline",
+      "test_tier": "core",
+      "reference_case_id": "",
+      "changed_properties": [
+        "baseline"
+      ],
+      "motivation": "A/EDNS0/DO=1/RD=1 control query for the unified mutation set.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "baseline_dnssec_query",
+          "description": "A/EDNS0/DO=1/RD=1 control query for the unified mutation set.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "header_qr1",
+      "family": "header",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "header",
+      "comparison_group": "header",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "header"
+      ],
+      "motivation": "Set QR in a client query.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "header_qr1",
+          "description": "Set QR in a client query.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "flags": {
+            "qr": true
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "header_opcode_update",
+      "family": "header",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "header",
+      "comparison_group": "header",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "header"
+      ],
+      "motivation": "Use UPDATE opcode with query-shaped sections.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "header_opcode_update",
+          "description": "Use UPDATE opcode with query-shaped sections.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "flags": {
+            "opcode": 5
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "header_opcode_15",
+      "family": "header",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "header",
+      "comparison_group": "header",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "header"
+      ],
+      "motivation": "Use unassigned opcode 15.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "header_opcode_15",
+          "description": "Use unassigned opcode 15.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "flags": {
+            "opcode": 15
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "header_aa1",
+      "family": "header",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "header",
+      "comparison_group": "header",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "header"
+      ],
+      "motivation": "Set AA in a client query.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "header_aa1",
+          "description": "Set AA in a client query.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "flags": {
+            "aa": true
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "header_tc1",
+      "family": "header",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "header",
+      "comparison_group": "header",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "header"
+      ],
+      "motivation": "Set TC in a client query.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "header_tc1",
+          "description": "Set TC in a client query.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "flags": {
+            "tc": true
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "header_rd0",
+      "family": "header",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "header",
+      "comparison_group": "header",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "header"
+      ],
+      "motivation": "Clear RD as recursion-boundary control.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "header_rd0",
+          "description": "Clear RD as recursion-boundary control.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "flags": {
+            "rd": false
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "header_ra1",
+      "family": "header",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "header",
+      "comparison_group": "header",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "header"
+      ],
+      "motivation": "Set RA in a client query.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "header_ra1",
+          "description": "Set RA in a client query.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "flags": {
+            "ra": true
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "header_z1",
+      "family": "header",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "header",
+      "comparison_group": "header",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "header"
+      ],
+      "motivation": "Set the reserved DNS header Z bit.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "header_z1",
+          "description": "Set the reserved DNS header Z bit.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "flags": {
+            "z": true
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "header_ad1",
+      "family": "header",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "header",
+      "comparison_group": "header",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "header"
+      ],
+      "motivation": "Set AD in a client query.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "header_ad1",
+          "description": "Set AD in a client query.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "flags": {
+            "ad": true
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "header_cd1",
+      "family": "header",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "header",
+      "comparison_group": "header",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "header"
+      ],
+      "motivation": "Set CD in a client query.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "header_cd1",
+          "description": "Set CD in a client query.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "flags": {
+            "cd": true
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "header_request_rcode1",
+      "family": "header",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "header",
+      "comparison_group": "header",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "header"
+      ],
+      "motivation": "Set FORMERR in the request RCODE field.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "header_request_rcode1",
+          "description": "Set FORMERR in the request RCODE field.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "flags": {
+            "rcode": 1
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "qname_mixed_case",
+      "family": "qname",
+      "priority": 1,
+      "qname": "NoRmAl.MuT.TeSt.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "qname_structure_and_dnssec_denial",
+      "comparison_group": "qname",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qname"
+      ],
+      "motivation": "Change only QNAME letter case.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qname_mixed_case",
+          "description": "Change only QNAME letter case.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qname_nxdomain_nsec",
+      "family": "qname",
+      "priority": 1,
+      "qname": "missing.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "qname_structure_and_dnssec_denial",
+      "comparison_group": "qname",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qname"
+      ],
+      "motivation": "Signed NSEC NXDOMAIN control.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qname_nxdomain_nsec",
+          "description": "Signed NSEC NXDOMAIN control.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qname_empty_nonterminal",
+      "family": "qname",
+      "priority": 1,
+      "qname": "b.c.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "qname_structure_and_dnssec_denial",
+      "comparison_group": "qname",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qname"
+      ],
+      "motivation": "Signed empty-non-terminal NODATA query.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qname_empty_nonterminal",
+          "description": "Signed empty-non-terminal NODATA query.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qname_wildcard_positive",
+      "family": "qname",
+      "priority": 1,
+      "qname": "host.wild.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "qname_structure_and_dnssec_denial",
+      "comparison_group": "qname",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qname"
+      ],
+      "motivation": "Positive signed wildcard synthesis.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qname_wildcard_positive",
+          "description": "Positive signed wildcard synthesis.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qname_literal_wildcard",
+      "family": "qname",
+      "priority": 1,
+      "qname": "*.wild.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "qname_structure_and_dnssec_denial",
+      "comparison_group": "qname",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qname"
+      ],
+      "motivation": "Literal wildcard-owner query.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qname_literal_wildcard",
+          "description": "Literal wildcard-owner query.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qname_child_delegation",
+      "family": "qname",
+      "priority": 1,
+      "qname": "normal.child.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "qname_structure_and_dnssec_denial",
+      "comparison_group": "qname",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qname"
+      ],
+      "motivation": "Query below the signed child delegation.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qname_child_delegation",
+          "description": "Query below the signed child delegation.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qname_nsec3_negative",
+      "family": "qname",
+      "priority": 1,
+      "qname": "missing.nsec3.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "qname_structure_and_dnssec_denial",
+      "comparison_group": "qname",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qname"
+      ],
+      "motivation": "Signed NSEC3 NXDOMAIN control.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qname_nsec3_negative",
+          "description": "Signed NSEC3 NXDOMAIN control.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qname_label_63",
+      "family": "qname",
+      "priority": 1,
+      "qname": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "qname_structure_and_dnssec_denial",
+      "comparison_group": "qname",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qname"
+      ],
+      "motivation": "Maximum conforming 63-octet label.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qname_label_63",
+          "description": "Maximum conforming 63-octet label.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qname_label_64",
+      "family": "qname",
+      "priority": 1,
+      "qname": "invalid-label64.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "qname_structure_and_dnssec_denial",
+      "comparison_group": "qname",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qname"
+      ],
+      "motivation": "64-octet label encoded as raw DNS.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qname_label_64",
+          "description": "64-octet label encoded as raw DNS.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "raw_wire": {
+            "hex": "7001010000010000000000014061616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161036d75740474657374000001000100002904d0000080000000",
+            "description": "QNAME begins with a 64-octet label"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "qname_wire_255",
+      "family": "qname",
+      "priority": 1,
+      "qname": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc.dddddddddddddddddddddddddddddddddddddddddddddddddddd.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "qname_structure_and_dnssec_denial",
+      "comparison_group": "qname",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qname"
+      ],
+      "motivation": "Maximum 255-octet wire-format QNAME.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qname_wire_255",
+          "description": "Maximum 255-octet wire-format QNAME.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qname_wire_256",
+      "family": "qname",
+      "priority": 1,
+      "qname": "invalid-wire256.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "qname_structure_and_dnssec_denial",
+      "comparison_group": "qname",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qname"
+      ],
+      "motivation": "Overlong wire-format QNAME.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qname_wire_256",
+          "description": "Overlong wire-format QNAME.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "raw_wire": {
+            "hex": "7001010000010000000000013f6161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161613f6262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262623f636363636363636363636363636363636363636363636363636363636363636363636363636363636363636363636363636363636363636363636363636363356464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464036d75740474657374000001000100002904d0000080000000",
+            "description": "QNAME occupies 256 wire octets"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "qname_compression_loop",
+      "family": "qname",
+      "priority": 1,
+      "qname": "compression-loop.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "qname_structure_and_dnssec_denial",
+      "comparison_group": "qname",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qname"
+      ],
+      "motivation": "Self-referential QNAME compression pointer.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qname_compression_loop",
+          "description": "Self-referential QNAME compression pointer.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "raw_wire": {
+            "hex": "700101000001000000000001c00c0001000100002904d0000080000000",
+            "description": "QNAME compression pointer loops to itself"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_dnskey",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "DNSKEY",
+      "qclass": "IN",
+      "research_dimension": "dnssec_and_control_qtypes",
+      "comparison_group": "qtype",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "QTYPE mutation to DNSKEY.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_dnskey",
+          "description": "QTYPE mutation to DNSKEY.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_ds",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "DS",
+      "qclass": "IN",
+      "research_dimension": "dnssec_and_control_qtypes",
+      "comparison_group": "qtype",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "QTYPE mutation to DS.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_ds",
+          "description": "QTYPE mutation to DS.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_rrsig",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "RRSIG",
+      "qclass": "IN",
+      "research_dimension": "dnssec_and_control_qtypes",
+      "comparison_group": "qtype",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "QTYPE mutation to RRSIG.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_rrsig",
+          "description": "QTYPE mutation to RRSIG.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_nsec",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "NSEC",
+      "qclass": "IN",
+      "research_dimension": "dnssec_and_control_qtypes",
+      "comparison_group": "qtype",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "QTYPE mutation to NSEC.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_nsec",
+          "description": "QTYPE mutation to NSEC.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_nsec3",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "NSEC3",
+      "qclass": "IN",
+      "research_dimension": "dnssec_and_control_qtypes",
+      "comparison_group": "qtype",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "QTYPE mutation to NSEC3.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_nsec3",
+          "description": "QTYPE mutation to NSEC3.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_nsec3param",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "NSEC3PARAM",
+      "qclass": "IN",
+      "research_dimension": "dnssec_and_control_qtypes",
+      "comparison_group": "qtype",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "QTYPE mutation to NSEC3PARAM.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_nsec3param",
+          "description": "QTYPE mutation to NSEC3PARAM.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_cds",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "CDS",
+      "qclass": "IN",
+      "research_dimension": "dnssec_and_control_qtypes",
+      "comparison_group": "qtype",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "QTYPE mutation to CDS.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_cds",
+          "description": "QTYPE mutation to CDS.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_cdnskey",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "CDNSKEY",
+      "qclass": "IN",
+      "research_dimension": "dnssec_and_control_qtypes",
+      "comparison_group": "qtype",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "QTYPE mutation to CDNSKEY.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_cdnskey",
+          "description": "QTYPE mutation to CDNSKEY.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_any",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "ANY",
+      "qclass": "IN",
+      "research_dimension": "dnssec_and_control_qtypes",
+      "comparison_group": "qtype",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "QTYPE mutation to ANY.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_any",
+          "description": "QTYPE mutation to ANY.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_tkey",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "TKEY",
+      "qclass": "IN",
+      "research_dimension": "dnssec_and_control_qtypes",
+      "comparison_group": "qtype",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "QTYPE mutation to TKEY.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_tkey",
+          "description": "QTYPE mutation to TKEY.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_type65000",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "TYPE65000",
+      "qclass": "IN",
+      "research_dimension": "dnssec_and_control_qtypes",
+      "comparison_group": "qtype",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "QTYPE mutation to TYPE65000.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_type65000",
+          "description": "QTYPE mutation to TYPE65000.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_type0",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "TYPE0",
+      "qclass": "IN",
+      "research_dimension": "dnssec_and_control_qtypes",
+      "comparison_group": "qtype",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "QTYPE mutation to TYPE0.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_type0",
+          "description": "QTYPE mutation to TYPE0.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_cname",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "CNAME",
+      "qclass": "IN",
+      "research_dimension": "dnssec_and_control_qtypes",
+      "comparison_group": "qtype",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "QTYPE mutation to CNAME.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_cname",
+          "description": "QTYPE mutation to CNAME.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_ns",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "NS",
+      "qclass": "IN",
+      "research_dimension": "dnssec_and_control_qtypes",
+      "comparison_group": "qtype",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "QTYPE mutation to NS.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_ns",
+          "description": "QTYPE mutation to NS.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_soa",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "SOA",
+      "qclass": "IN",
+      "research_dimension": "dnssec_and_control_qtypes",
+      "comparison_group": "qtype",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "QTYPE mutation to SOA.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_soa",
+          "description": "QTYPE mutation to SOA.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qname_nodata",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "MX",
+      "qclass": "IN",
+      "research_dimension": "dnssec_and_control_qtypes",
+      "comparison_group": "qtype",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "QTYPE=MX at an existing owner without MX data (signed NODATA control).",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qname_nodata",
+          "description": "QTYPE=MX at an existing owner without MX data (signed NODATA control).",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "tkey_context_no_rr_rd1",
+      "family": "tkey",
+      "priority": 1,
+      "qname": "tkey-key.mut.test.",
+      "qtype": "TKEY",
+      "qclass": "ANY",
+      "research_dimension": "tkey_rr_permeability",
+      "comparison_group": "tkey",
+      "test_tier": "exploratory",
+      "reference_case_id": "qtype_tkey",
+      "changed_properties": [
+        "qclass",
+        "flags.rd",
+        "edns.present",
+        "qname"
+      ],
+      "motivation": "TKEY question with QCLASS=ANY and RD=1 but without the required TKEY RR.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {
+        "tkey_permeability_relevant": true,
+        "tkey_rr_expected": false
+      },
+      "variants": [
+        {
+          "variant_id": "tkey_context_no_rr_rd1",
+          "description": "TKEY question with QCLASS=ANY and RD=1 but without the required TKEY RR.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {
+            "tkey_permeability_relevant": true,
+            "tkey_rr_expected": false
+          },
+          "edns": {
+            "present": false
+          },
+          "flags": {
+            "rd": true
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "tkey_rr_gss_rd1",
+      "family": "tkey",
+      "priority": 1,
+      "qname": "tkey-key.mut.test.",
+      "qtype": "TKEY",
+      "qclass": "ANY",
+      "research_dimension": "tkey_rr_permeability",
+      "comparison_group": "tkey",
+      "test_tier": "exploratory",
+      "reference_case_id": "tkey_context_no_rr_rd1",
+      "changed_properties": [
+        "additional.tkey"
+      ],
+      "motivation": "GSS-API TKEY RR in Additional with RD=1 as a recursive-path permeability probe.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {
+        "tkey_permeability_relevant": true,
+        "tkey_rr_expected": true
+      },
+      "variants": [
+        {
+          "variant_id": "tkey_rr_gss_rd1",
+          "description": "GSS-API TKEY RR in Additional with RD=1 as a recursive-path permeability probe.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {
+            "tkey_permeability_relevant": true,
+            "tkey_rr_expected": true
+          },
+          "edns": {
+            "present": false
+          },
+          "flags": {
+            "rd": true
+          },
+          "tkey": {
+            "include_rr": true,
+            "section": "additional",
+            "owner_name": "tkey-key.mut.test.",
+            "rr_class": "ANY",
+            "ttl": 0,
+            "count": 1,
+            "algorithm": "gss-tsig.",
+            "mode": 3,
+            "inception": 0,
+            "expiration": 0,
+            "error": 0,
+            "key_data_hex": "01020304",
+            "other_data_hex": ""
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "tkey_rr_gss_rd0",
+      "family": "tkey",
+      "priority": 1,
+      "qname": "tkey-key.mut.test.",
+      "qtype": "TKEY",
+      "qclass": "ANY",
+      "research_dimension": "tkey_rr_permeability",
+      "comparison_group": "tkey",
+      "test_tier": "exploratory",
+      "reference_case_id": "tkey_rr_gss_rd1",
+      "changed_properties": [
+        "flags.rd"
+      ],
+      "motivation": "GSS-API TKEY RR in Additional with the RFC-recommended RD=0 setting.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {
+        "tkey_permeability_relevant": true,
+        "tkey_rr_expected": true
+      },
+      "variants": [
+        {
+          "variant_id": "tkey_rr_gss_rd0",
+          "description": "GSS-API TKEY RR in Additional with the RFC-recommended RD=0 setting.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {
+            "tkey_permeability_relevant": true,
+            "tkey_rr_expected": true
+          },
+          "edns": {
+            "present": false
+          },
+          "flags": {
+            "rd": false
+          },
+          "tkey": {
+            "include_rr": true,
+            "section": "additional",
+            "owner_name": "tkey-key.mut.test.",
+            "rr_class": "ANY",
+            "ttl": 0,
+            "count": 1,
+            "algorithm": "gss-tsig.",
+            "mode": 3,
+            "inception": 0,
+            "expiration": 0,
+            "error": 0,
+            "key_data_hex": "01020304",
+            "other_data_hex": ""
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "tkey_rr_owner",
+      "family": "tkey",
+      "priority": 1,
+      "qname": "tkey-key.mut.test.",
+      "qtype": "TKEY",
+      "qclass": "ANY",
+      "research_dimension": "tkey_rr_permeability",
+      "comparison_group": "tkey",
+      "test_tier": "exploratory",
+      "reference_case_id": "tkey_rr_gss_rd1",
+      "changed_properties": [
+        "tkey.owner_name"
+      ],
+      "motivation": "Change only the TKEY RR owner name in the RD=1 permeability context.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {
+        "tkey_permeability_relevant": true,
+        "tkey_rr_expected": true
+      },
+      "variants": [
+        {
+          "variant_id": "tkey_rr_owner",
+          "description": "Change only the TKEY RR owner name in the RD=1 permeability context.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {
+            "tkey_permeability_relevant": true,
+            "tkey_rr_expected": true
+          },
+          "edns": {
+            "present": false
+          },
+          "flags": {
+            "rd": true
+          },
+          "tkey": {
+            "include_rr": true,
+            "section": "additional",
+            "owner_name": "alternate-key.mut.test.",
+            "rr_class": "ANY",
+            "ttl": 0,
+            "count": 1,
+            "algorithm": "gss-tsig.",
+            "mode": 3,
+            "inception": 0,
+            "expiration": 0,
+            "error": 0,
+            "key_data_hex": "01020304",
+            "other_data_hex": ""
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "tkey_rr_algorithm",
+      "family": "tkey",
+      "priority": 1,
+      "qname": "tkey-key.mut.test.",
+      "qtype": "TKEY",
+      "qclass": "ANY",
+      "research_dimension": "tkey_rr_permeability",
+      "comparison_group": "tkey",
+      "test_tier": "exploratory",
+      "reference_case_id": "tkey_rr_gss_rd1",
+      "changed_properties": [
+        "tkey.algorithm"
+      ],
+      "motivation": "Change only the TKEY algorithm name from gss-tsig. to hmac-sha256.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {
+        "tkey_permeability_relevant": true,
+        "tkey_rr_expected": true
+      },
+      "variants": [
+        {
+          "variant_id": "tkey_rr_algorithm",
+          "description": "Change only the TKEY algorithm name from gss-tsig. to hmac-sha256.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {
+            "tkey_permeability_relevant": true,
+            "tkey_rr_expected": true
+          },
+          "edns": {
+            "present": false
+          },
+          "flags": {
+            "rd": true
+          },
+          "tkey": {
+            "include_rr": true,
+            "section": "additional",
+            "owner_name": "tkey-key.mut.test.",
+            "rr_class": "ANY",
+            "ttl": 0,
+            "count": 1,
+            "algorithm": "hmac-sha256.",
+            "mode": 3,
+            "inception": 0,
+            "expiration": 0,
+            "error": 0,
+            "key_data_hex": "01020304",
+            "other_data_hex": ""
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "tkey_rr_mode_unknown",
+      "family": "tkey",
+      "priority": 1,
+      "qname": "tkey-key.mut.test.",
+      "qtype": "TKEY",
+      "qclass": "ANY",
+      "research_dimension": "tkey_rr_permeability",
+      "comparison_group": "tkey",
+      "test_tier": "exploratory",
+      "reference_case_id": "tkey_rr_gss_rd1",
+      "changed_properties": [
+        "tkey.mode"
+      ],
+      "motivation": "Change only the TKEY mode from GSS-API mode 3 to unsupported mode 65000.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {
+        "tkey_permeability_relevant": true,
+        "tkey_rr_expected": true
+      },
+      "variants": [
+        {
+          "variant_id": "tkey_rr_mode_unknown",
+          "description": "Change only the TKEY mode from GSS-API mode 3 to unsupported mode 65000.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {
+            "tkey_permeability_relevant": true,
+            "tkey_rr_expected": true
+          },
+          "edns": {
+            "present": false
+          },
+          "flags": {
+            "rd": true
+          },
+          "tkey": {
+            "include_rr": true,
+            "section": "additional",
+            "owner_name": "tkey-key.mut.test.",
+            "rr_class": "ANY",
+            "ttl": 0,
+            "count": 1,
+            "algorithm": "gss-tsig.",
+            "mode": 65000,
+            "inception": 0,
+            "expiration": 0,
+            "error": 0,
+            "key_data_hex": "01020304",
+            "other_data_hex": ""
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "tkey_rr_payload",
+      "family": "tkey",
+      "priority": 1,
+      "qname": "tkey-key.mut.test.",
+      "qtype": "TKEY",
+      "qclass": "ANY",
+      "research_dimension": "tkey_rr_permeability",
+      "comparison_group": "tkey",
+      "test_tier": "exploratory",
+      "reference_case_id": "tkey_rr_gss_rd1",
+      "changed_properties": [
+        "tkey.key_data"
+      ],
+      "motivation": "Change only the opaque TKEY key-data payload to a recognizable permeability marker.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {
+        "tkey_permeability_relevant": true,
+        "tkey_rr_expected": true
+      },
+      "variants": [
+        {
+          "variant_id": "tkey_rr_payload",
+          "description": "Change only the opaque TKEY key-data payload to a recognizable permeability marker.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {
+            "tkey_permeability_relevant": true,
+            "tkey_rr_expected": true
+          },
+          "edns": {
+            "present": false
+          },
+          "flags": {
+            "rd": true
+          },
+          "tkey": {
+            "include_rr": true,
+            "section": "additional",
+            "owner_name": "tkey-key.mut.test.",
+            "rr_class": "ANY",
+            "ttl": 0,
+            "count": 1,
+            "algorithm": "gss-tsig.",
+            "mode": 3,
+            "inception": 0,
+            "expiration": 0,
+            "error": 0,
+            "key_data_hex": "544b45592d5045524d454142494c495459",
+            "other_data_hex": ""
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "qclass_any",
+      "family": "qclass",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "ANY",
+      "research_dimension": "qclass",
+      "comparison_group": "qclass",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qclass"
+      ],
+      "motivation": "QCLASS mutation to ANY.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qclass_any",
+          "description": "QCLASS mutation to ANY.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qclass_ch",
+      "family": "qclass",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "CH",
+      "research_dimension": "qclass",
+      "comparison_group": "qclass",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qclass"
+      ],
+      "motivation": "QCLASS mutation to CH.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qclass_ch",
+          "description": "QCLASS mutation to CH.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qclass_none",
+      "family": "qclass",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "NONE",
+      "research_dimension": "qclass",
+      "comparison_group": "qclass",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qclass"
+      ],
+      "motivation": "QCLASS mutation to NONE.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qclass_none",
+          "description": "QCLASS mutation to NONE.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qclass_class0",
+      "family": "qclass",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "CLASS0",
+      "research_dimension": "qclass",
+      "comparison_group": "qclass",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qclass"
+      ],
+      "motivation": "QCLASS mutation to CLASS0.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qclass_class0",
+          "description": "QCLASS mutation to CLASS0.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "edns_absent",
+      "family": "edns_core",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_core",
+      "comparison_group": "edns_core",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_core"
+      ],
+      "motivation": "Remove EDNS/OPT completely.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_absent",
+          "description": "Remove EDNS/OPT completely.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "present": false
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_version_1",
+      "family": "edns_core",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_core",
+      "comparison_group": "edns_core",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_core"
+      ],
+      "motivation": "Advertise unsupported EDNS version 1.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_version_1",
+          "description": "Advertise unsupported EDNS version 1.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "version": 1
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_do0",
+      "family": "edns_core",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_core",
+      "comparison_group": "edns_core",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_core"
+      ],
+      "motivation": "Clear DO while retaining EDNS.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_do0",
+          "description": "Clear DO while retaining EDNS.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "do": false
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_udp_512",
+      "family": "edns_core",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_core",
+      "comparison_group": "edns_core",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_core"
+      ],
+      "motivation": "Advertise 512-byte UDP payload.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_udp_512",
+          "description": "Advertise 512-byte UDP payload.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "udp_size": 512
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_udp_1400",
+      "family": "edns_core",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_core",
+      "comparison_group": "edns_core",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_core"
+      ],
+      "motivation": "Advertise 1400-byte UDP payload.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_udp_1400",
+          "description": "Advertise 1400-byte UDP payload.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "udp_size": 1400
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_udp_4096",
+      "family": "edns_core",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_core",
+      "comparison_group": "edns_core",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_core"
+      ],
+      "motivation": "Advertise 4096-byte UDP payload.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_udp_4096",
+          "description": "Advertise 4096-byte UDP payload.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "udp_size": 4096
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_udp_0",
+      "family": "edns_core",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_core",
+      "comparison_group": "edns_core",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_core"
+      ],
+      "motivation": "Advertise zero-byte UDP payload.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_udp_0",
+          "description": "Advertise zero-byte UDP payload.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "udp_size": 0
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_unknown_z_flag",
+      "family": "edns_core",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_core",
+      "comparison_group": "edns_core",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_core"
+      ],
+      "motivation": "Set an unknown EDNS Z flag.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_unknown_z_flag",
+          "description": "Set an unknown EDNS Z flag.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "z_flags": 1
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_extended_rcode",
+      "family": "edns_core",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_core",
+      "comparison_group": "edns_core",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_core"
+      ],
+      "motivation": "Set nonzero EDNS extended RCODE bits in the query.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_extended_rcode",
+          "description": "Set nonzero EDNS extended RCODE bits in the query.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "extended_rcode": 1
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_nonroot_owner",
+      "family": "edns_core",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_core",
+      "comparison_group": "edns_core",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_core"
+      ],
+      "motivation": "Use a non-root OPT owner name.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_nonroot_owner",
+          "description": "Use a non-root OPT owner name.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "owner_name": "optowner.mut.test."
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_two_opt",
+      "family": "edns_core",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_core",
+      "comparison_group": "edns_core",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_core"
+      ],
+      "motivation": "Include two OPT pseudo-RRs.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_two_opt",
+          "description": "Include two OPT pseudo-RRs.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "opt_count": 2
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ctx_ecs_repetition_a",
+      "family": "qname",
+      "priority": 1,
+      "qname": "ecs-r1.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "cache_isolation_control",
+      "comparison_group": "qname",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "measurement_control.qname"
+      ],
+      "motivation": "Repetition-isolated A-query control for the ECS /0 mutation.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "ctx_ecs_repetition_a",
+          "description": "Repetition-isolated A-query control for the ECS /0 mutation.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "repetition_qname_template": "ecs-r{repetition}.mut.test."
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_nsid",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "NSID request option.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_nsid",
+          "description": "NSID request option.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 3,
+                "data_hex": "",
+                "length": 0,
+                "name": "nsid"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_dau",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "DAU algorithm signal.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_dau",
+          "description": "DAU algorithm signal.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 5,
+                "data_hex": "080d0f",
+                "length": 3,
+                "name": "dau"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_dhu",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "DHU digest signal.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_dhu",
+          "description": "DHU digest signal.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 6,
+                "data_hex": "0204",
+                "length": 2,
+                "name": "dhu"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_n3u",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "N3U hash signal.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_n3u",
+          "description": "N3U hash signal.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 7,
+                "data_hex": "01",
+                "length": 1,
+                "name": "n3u"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_ecs_zero",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "ecs-r1.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "exploratory",
+      "reference_case_id": "ctx_ecs_repetition_a",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "ECS IPv4 /0 control.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_ecs_zero",
+          "description": "ECS IPv4 /0 control.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 8,
+                "data_hex": "00010000",
+                "length": 4,
+                "name": "ecs"
+              }
+            ]
+          },
+          "repetition_qname_template": "ecs-r{repetition}.mut.test."
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_ecs_malformed",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "ECS /24 without address octets.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_ecs_malformed",
+          "description": "ECS /24 without address octets.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 8,
+                "data_hex": "00011800",
+                "length": 4,
+                "name": "ecs"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_cookie8",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "Eight-octet client cookie.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_cookie8",
+          "description": "Eight-octet client cookie.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 10,
+                "data_hex": "3132333435363738",
+                "length": 8,
+                "name": "cookie"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_cookie7",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "Undersized seven-octet cookie.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_cookie7",
+          "description": "Undersized seven-octet cookie.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 10,
+                "data_hex": "31323334353637",
+                "length": 7,
+                "name": "cookie"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_padding0",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "Zero-length EDNS padding.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_padding0",
+          "description": "Zero-length EDNS padding.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 12,
+                "data_hex": "",
+                "length": 0,
+                "name": "padding"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_padding16",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "Sixteen bytes of EDNS padding.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_padding16",
+          "description": "Sixteen bytes of EDNS padding.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 12,
+                "name": "padding",
+                "length": 16
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_padding512",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "Large 512-byte EDNS padding.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_padding512",
+          "description": "Large 512-byte EDNS padding.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 12,
+                "name": "padding",
+                "length": 512
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_chain_empty",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "Empty CHAIN option.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_chain_empty",
+          "description": "Empty CHAIN option.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 13,
+                "data_hex": "",
+                "length": 0,
+                "name": "chain"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_chain_name",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "CHAIN option containing child.mut.test.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_chain_name",
+          "description": "CHAIN option containing child.mut.test.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 13,
+                "data_hex": "056368696c64036d7574047465737400",
+                "length": 16,
+                "name": "chain"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_keytag_a",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "KEY-TAG option attached to an A query.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_keytag_a",
+          "description": "KEY-TAG option attached to an A query.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 14,
+                "data_hex": "1234",
+                "length": 2,
+                "name": "keytag"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_ede_query",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "EDE option placed in a query.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_ede_query",
+          "description": "EDE option placed in a query.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 15,
+                "data_hex": "000f",
+                "length": 2,
+                "name": "ede"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_private65001",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "Private option with fingerprinted payload.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_private65001",
+          "description": "Private option with fingerprinted payload.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 65001,
+                "data_hex": "646e737365632d71756572792d6d75746174696f6e",
+                "length": 21,
+                "name": "private"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_duplicate",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "Duplicate EDNS option code.",
+      "query_validity": "nonstandard",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_duplicate",
+          "description": "Duplicate EDNS option code.",
+          "query_validity": "nonstandard",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 65001,
+                "data_hex": "6f6e65",
+                "length": 3
+              },
+              {
+                "code": 65001,
+                "data_hex": "74776f",
+                "length": 3
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_order_private_padding",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "Private option before padding.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_order_private_padding",
+          "description": "Private option before padding.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 65001,
+                "data_hex": "6f72646572",
+                "length": 5
+              },
+              {
+                "code": 12,
+                "name": "padding",
+                "length": 4
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_order_padding_private",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "Padding before private option.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_order_padding_private",
+          "description": "Padding before private option.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 12,
+                "name": "padding",
+                "length": 4
+              },
+              {
+                "code": 65001,
+                "data_hex": "6f72646572",
+                "length": 5
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "edns_option_length_mismatch",
+      "family": "edns_options",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "edns_options",
+      "comparison_group": "edns_options",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "edns_options"
+      ],
+      "motivation": "EDNS option length exceeds remaining RDATA.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "edns_option_length_mismatch",
+          "description": "EDNS option length exceeds remaining RDATA.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "raw_wire": {
+            "hex": "700101000001000000000001066e6f726d616c036d75740474657374000001000100002904d0000080000006fde900087878",
+            "description": "option code 65001 declares length 8 but carries 2 bytes"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "section_qdcount_0",
+      "family": "sections",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "sections",
+      "comparison_group": "sections",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "sections"
+      ],
+      "motivation": "QDCOUNT=0 and no question.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "section_qdcount_0",
+          "description": "QDCOUNT=0 and no question.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "raw_wire": {
+            "hex": "70010100000000000000000100002904d0000080000000",
+            "description": "QDCOUNT=0 and no question."
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "section_qdcount_2",
+      "family": "sections",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "sections",
+      "comparison_group": "sections",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "sections"
+      ],
+      "motivation": "Two complete identical questions.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "section_qdcount_2",
+          "description": "Two complete identical questions.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "raw_wire": {
+            "hex": "700101000002000000000001066e6f726d616c036d757404746573740000010001066e6f726d616c036d75740474657374000001000100002904d0000080000000",
+            "description": "Two complete identical questions."
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "section_qdcount_mismatch",
+      "family": "sections",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "sections",
+      "comparison_group": "sections",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "sections"
+      ],
+      "motivation": "QDCOUNT=2 but only one question.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "section_qdcount_mismatch",
+          "description": "QDCOUNT=2 but only one question.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "raw_wire": {
+            "hex": "700101000002000000000001066e6f726d616c036d75740474657374000001000100002904d0000080000000",
+            "description": "QDCOUNT=2 but only one question."
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "section_answer_rr",
+      "family": "sections",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "sections",
+      "comparison_group": "sections",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "sections"
+      ],
+      "motivation": "One A RR in the Answer section of a query.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "section_answer_rr",
+          "description": "One A RR in the Answer section of a query.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "raw_wire": {
+            "hex": "700101000001000100000001066e6f726d616c036d757404746573740000010001c00c00010001000000000004c000023700002904d0000080000000",
+            "description": "One A RR in the Answer section of a query."
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "section_authority_rr",
+      "family": "sections",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "sections",
+      "comparison_group": "sections",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "sections"
+      ],
+      "motivation": "One NS RR in the Authority section of a query.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "section_authority_rr",
+          "description": "One NS RR in the Authority section of a query.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "raw_wire": {
+            "hex": "700101000001000000010001066e6f726d616c036d757404746573740000010001c00c0002000100000000000d026e73036d757404746573740000002904d0000080000000",
+            "description": "One NS RR in the Authority section of a query."
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "section_additional_a",
+      "family": "sections",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "sections",
+      "comparison_group": "sections",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "sections"
+      ],
+      "motivation": "One non-OPT A RR in Additional alongside baseline OPT.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "section_additional_a",
+          "description": "One non-OPT A RR in Additional alongside baseline OPT.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "raw_wire": {
+            "hex": "700101000001000000000002066e6f726d616c036d75740474657374000001000100002904d0000080000000c00c00010001000000000004c0000237",
+            "description": "One non-OPT A RR in Additional alongside baseline OPT."
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "section_trailing_bytes",
+      "family": "sections",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "sections",
+      "comparison_group": "sections",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "sections"
+      ],
+      "motivation": "Four trailing bytes after the DNS message.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "section_trailing_bytes",
+          "description": "Four trailing bytes after the DNS message.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "raw_wire": {
+            "hex": "700101000001000000000001066e6f726d616c036d75740474657374000001000100002904d0000080000000deadbeef",
+            "description": "Four trailing bytes after the DNS message."
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "section_truncated_packet",
+      "family": "sections",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "sections",
+      "comparison_group": "sections",
+      "test_tier": "exploratory",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "sections"
+      ],
+      "motivation": "Packet ends inside the OPT pseudo-RR.",
+      "query_validity": "malformed",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "section_truncated_packet",
+          "description": "Packet ends inside the OPT pseudo-RR.",
+          "query_validity": "malformed",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "raw_wire": {
+            "hex": "700101000001000000000001066e6f726d616c036d75740474657374000001000100002904d0000080",
+            "description": "Packet ends inside the OPT pseudo-RR."
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "transport_tcp_baseline",
+      "family": "transport",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "transport",
+      "comparison_group": "transport",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "transport"
+      ],
+      "motivation": "Baseline query sent over TCP.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "transport_tcp_baseline",
+          "description": "Baseline query sent over TCP.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "transport": "tcp"
+        }
+      ]
+    },
+    {
+      "case_id": "ctx_apex_a",
+      "family": "qname",
+      "priority": 1,
+      "qname": "mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "dnssec_owner_context",
+      "comparison_group": "qname",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qname"
+      ],
+      "motivation": "A-query context baseline at the parent-zone apex.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "ctx_apex_a",
+          "description": "A-query context baseline at the parent-zone apex.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_dnskey_apex",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "mut.test.",
+      "qtype": "DNSKEY",
+      "qclass": "IN",
+      "research_dimension": "dnssec_owner_context",
+      "comparison_group": "qtype",
+      "test_tier": "core",
+      "reference_case_id": "ctx_apex_a",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "DNSKEY at the parent-zone apex.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_dnskey_apex",
+          "description": "DNSKEY at the parent-zone apex.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "ctx_child_apex_a",
+      "family": "qname",
+      "priority": 1,
+      "qname": "child.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "dnssec_owner_context",
+      "comparison_group": "qname",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qname"
+      ],
+      "motivation": "A-query context baseline at the signed child apex.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "ctx_child_apex_a",
+          "description": "A-query context baseline at the signed child apex.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_ds_delegation",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "child.mut.test.",
+      "qtype": "DS",
+      "qclass": "IN",
+      "research_dimension": "dnssec_owner_context",
+      "comparison_group": "qtype",
+      "test_tier": "core",
+      "reference_case_id": "ctx_child_apex_a",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "DS at the child delegation owner in the parent zone.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_ds_delegation",
+          "description": "DS at the child delegation owner in the parent zone.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_cds_child_apex",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "child.mut.test.",
+      "qtype": "CDS",
+      "qclass": "IN",
+      "research_dimension": "dnssec_owner_context",
+      "comparison_group": "qtype",
+      "test_tier": "core",
+      "reference_case_id": "ctx_child_apex_a",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "CDS at the signed child-zone apex.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_cds_child_apex",
+          "description": "CDS at the signed child-zone apex.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_cdnskey_child_apex",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "child.mut.test.",
+      "qtype": "CDNSKEY",
+      "qclass": "IN",
+      "research_dimension": "dnssec_owner_context",
+      "comparison_group": "qtype",
+      "test_tier": "core",
+      "reference_case_id": "ctx_child_apex_a",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "CDNSKEY at the signed child-zone apex.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_cdnskey_child_apex",
+          "description": "CDNSKEY at the signed child-zone apex.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "ctx_nsec3_apex_a",
+      "family": "qname",
+      "priority": 1,
+      "qname": "nsec3.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "dnssec_owner_context",
+      "comparison_group": "qname",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qname"
+      ],
+      "motivation": "A-query context baseline at the NSEC3-zone apex.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "ctx_nsec3_apex_a",
+          "description": "A-query context baseline at the NSEC3-zone apex.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_nsec3param_apex",
+      "family": "qtype",
+      "priority": 1,
+      "qname": "nsec3.mut.test.",
+      "qtype": "NSEC3PARAM",
+      "qclass": "IN",
+      "research_dimension": "dnssec_owner_context",
+      "comparison_group": "qtype",
+      "test_tier": "core",
+      "reference_case_id": "ctx_nsec3_apex_a",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "NSEC3PARAM at the NSEC3-zone apex.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_nsec3param_apex",
+          "description": "NSEC3PARAM at the NSEC3-zone apex.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qtype_nsec3_hashed_owner",
+      "family": "qname",
+      "priority": 1,
+      "qname": "2NR36I5GUQKPJODNO934GGV6FOTEAQGE.nsec3.mut.test.",
+      "qtype": "NSEC3",
+      "qclass": "IN",
+      "research_dimension": "dnssec_owner_context",
+      "comparison_group": "qname",
+      "test_tier": "exploratory",
+      "reference_case_id": "qtype_nsec3",
+      "changed_properties": [
+        "qname"
+      ],
+      "motivation": "Exploratory NSEC3 query at an existing hashed NSEC3 owner.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qtype_nsec3_hashed_owner",
+          "description": "Exploratory NSEC3 query at an existing hashed NSEC3 owner.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "qname_cname_positive",
+      "family": "qname",
+      "priority": 1,
+      "qname": "cname.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "dnssec_validation_path",
+      "comparison_group": "qname",
+      "test_tier": "core",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qname"
+      ],
+      "motivation": "Resolve a positive signed CNAME chain.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "qname_cname_positive",
+          "description": "Resolve a positive signed CNAME chain.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "int_ad1_do0",
+      "family": "interaction",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "dnssec_signal_interaction",
+      "comparison_group": "interaction",
+      "test_tier": "interaction",
+      "reference_case_id": "edns_do0",
+      "changed_properties": [
+        "flags.ad"
+      ],
+      "motivation": "Set AD=1 on the DO=0 reference query.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "int_ad1_do0",
+          "description": "Set AD=1 on the DO=0 reference query.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "flags": {
+            "ad": true
+          },
+          "edns": {
+            "do": false
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "int_cd1_do0",
+      "family": "interaction",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "dnssec_signal_interaction",
+      "comparison_group": "interaction",
+      "test_tier": "interaction",
+      "reference_case_id": "edns_do0",
+      "changed_properties": [
+        "flags.cd"
+      ],
+      "motivation": "Set CD=1 on the DO=0 reference query.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "int_cd1_do0",
+          "description": "Set CD=1 on the DO=0 reference query.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "flags": {
+            "cd": true
+          },
+          "edns": {
+            "do": false
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "int_ad1_cd1",
+      "family": "interaction",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "dnssec_signal_interaction",
+      "comparison_group": "interaction",
+      "test_tier": "interaction",
+      "reference_case_id": "header_cd1",
+      "changed_properties": [
+        "flags.ad"
+      ],
+      "motivation": "Set AD=1 on the DO=1/CD=1 reference query.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "int_ad1_cd1",
+          "description": "Set AD=1 on the DO=1/CD=1 reference query.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "flags": {
+            "ad": true,
+            "cd": true
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "int_ad1_cd1_do0",
+      "family": "interaction",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "dnssec_signal_interaction",
+      "comparison_group": "interaction",
+      "test_tier": "interaction",
+      "reference_case_id": "int_cd1_do0",
+      "changed_properties": [
+        "flags.ad"
+      ],
+      "motivation": "Set AD=1 on the DO=0/CD=1 reference query.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "int_ad1_cd1_do0",
+          "description": "Set AD=1 on the DO=0/CD=1 reference query.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "flags": {
+            "ad": true,
+            "cd": true
+          },
+          "edns": {
+            "do": false
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "int_do0_dnskey_apex",
+      "family": "interaction",
+      "priority": 1,
+      "qname": "mut.test.",
+      "qtype": "DNSKEY",
+      "qclass": "IN",
+      "research_dimension": "dnssec_signal_interaction",
+      "comparison_group": "interaction",
+      "test_tier": "interaction",
+      "reference_case_id": "qtype_dnskey_apex",
+      "changed_properties": [
+        "edns.do"
+      ],
+      "motivation": "Explicit DNSKEY query with DO=0.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "int_do0_dnskey_apex",
+          "description": "Explicit DNSKEY query with DO=0.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "do": false
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "int_do0_nsec_negative",
+      "family": "interaction",
+      "priority": 1,
+      "qname": "missing.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "dnssec_signal_interaction",
+      "comparison_group": "interaction",
+      "test_tier": "interaction",
+      "reference_case_id": "qname_nxdomain_nsec",
+      "changed_properties": [
+        "edns.do"
+      ],
+      "motivation": "NSEC NXDOMAIN query with DO=0.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "int_do0_nsec_negative",
+          "description": "NSEC NXDOMAIN query with DO=0.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "do": false
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "int_do0_nsec3_negative",
+      "family": "interaction",
+      "priority": 1,
+      "qname": "missing.nsec3.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "dnssec_signal_interaction",
+      "comparison_group": "interaction",
+      "test_tier": "interaction",
+      "reference_case_id": "qname_nsec3_negative",
+      "changed_properties": [
+        "edns.do"
+      ],
+      "motivation": "NSEC3 NXDOMAIN query with DO=0.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "int_do0_nsec3_negative",
+          "description": "NSEC3 NXDOMAIN query with DO=0.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "do": false
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "int_cd1_nsec_negative",
+      "family": "interaction",
+      "priority": 1,
+      "qname": "missing.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "dnssec_signal_interaction",
+      "comparison_group": "interaction",
+      "test_tier": "interaction",
+      "reference_case_id": "qname_nxdomain_nsec",
+      "changed_properties": [
+        "flags.cd"
+      ],
+      "motivation": "NSEC NXDOMAIN query with CD=1.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "int_cd1_nsec_negative",
+          "description": "NSEC NXDOMAIN query with CD=1.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "flags": {
+            "cd": true
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "int_cd1_nsec3_negative",
+      "family": "interaction",
+      "priority": 1,
+      "qname": "missing.nsec3.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "dnssec_signal_interaction",
+      "comparison_group": "interaction",
+      "test_tier": "interaction",
+      "reference_case_id": "qname_nsec3_negative",
+      "changed_properties": [
+        "flags.cd"
+      ],
+      "motivation": "NSEC3 NXDOMAIN query with CD=1.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "int_cd1_nsec3_negative",
+          "description": "NSEC3 NXDOMAIN query with CD=1.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "flags": {
+            "cd": true
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "int_keytag_dnskey",
+      "family": "interaction",
+      "priority": 1,
+      "qname": "mut.test.",
+      "qtype": "DNSKEY",
+      "qclass": "IN",
+      "research_dimension": "dnssec_edns_interaction",
+      "comparison_group": "interaction",
+      "test_tier": "interaction",
+      "reference_case_id": "qtype_dnskey_apex",
+      "changed_properties": [
+        "edns.options"
+      ],
+      "motivation": "Conforming KEY-TAG option on a DNSKEY query.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "int_keytag_dnskey",
+          "description": "Conforming KEY-TAG option on a DNSKEY query.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 14,
+                "data_hex": "481f",
+                "length": 2,
+                "name": "keytag"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "int_chain_do0",
+      "family": "interaction",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "dnssec_edns_interaction",
+      "comparison_group": "interaction",
+      "test_tier": "interaction",
+      "reference_case_id": "edns_option_chain_name",
+      "changed_properties": [
+        "edns.do"
+      ],
+      "motivation": "Non-empty CHAIN option with DO=0.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "int_chain_do0",
+          "description": "Non-empty CHAIN option with DO=0.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "do": false,
+            "options": [
+              {
+                "code": 13,
+                "data_hex": "056368696c64036d7574047465737400",
+                "length": 16,
+                "name": "chain"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "int_large_signed_txt",
+      "family": "interaction",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "TXT",
+      "qclass": "IN",
+      "research_dimension": "dnssec_transport_interaction",
+      "comparison_group": "interaction",
+      "test_tier": "interaction",
+      "reference_case_id": "baseline_dnssec_query",
+      "changed_properties": [
+        "qtype"
+      ],
+      "motivation": "Large signed TXT response reference at UDP size 1232.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "int_large_signed_txt",
+          "description": "Large signed TXT response reference at UDP size 1232.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {}
+        }
+      ]
+    },
+    {
+      "case_id": "int_large_udp512",
+      "family": "interaction",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "TXT",
+      "qclass": "IN",
+      "research_dimension": "dnssec_transport_interaction",
+      "comparison_group": "interaction",
+      "test_tier": "interaction",
+      "reference_case_id": "int_large_signed_txt",
+      "changed_properties": [
+        "edns.udp_size"
+      ],
+      "motivation": "Large signed TXT response with advertised UDP size 512.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {
+        "client_truncation_relevant": true,
+        "tcp_fallback_relevant": true
+      },
+      "variants": [
+        {
+          "variant_id": "int_large_udp512",
+          "description": "Large signed TXT response with advertised UDP size 512.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {
+            "client_truncation_relevant": true,
+            "tcp_fallback_relevant": true
+          },
+          "edns": {
+            "udp_size": 512
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "int_large_udp512_do0",
+      "family": "interaction",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "TXT",
+      "qclass": "IN",
+      "research_dimension": "dnssec_transport_interaction",
+      "comparison_group": "interaction",
+      "test_tier": "interaction",
+      "reference_case_id": "int_large_udp512",
+      "changed_properties": [
+        "edns.do"
+      ],
+      "motivation": "Large signed TXT response at UDP size 512 with DO=0.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {
+        "client_truncation_relevant": true,
+        "tcp_fallback_relevant": true
+      },
+      "variants": [
+        {
+          "variant_id": "int_large_udp512_do0",
+          "description": "Large signed TXT response at UDP size 512 with DO=0.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {
+            "client_truncation_relevant": true,
+            "tcp_fallback_relevant": true
+          },
+          "edns": {
+            "udp_size": 512,
+            "do": false
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "int_large_client_tcp",
+      "family": "interaction",
+      "priority": 1,
+      "qname": "normal.mut.test.",
+      "qtype": "TXT",
+      "qclass": "IN",
+      "research_dimension": "dnssec_transport_interaction",
+      "comparison_group": "interaction",
+      "test_tier": "interaction",
+      "reference_case_id": "int_large_signed_txt",
+      "changed_properties": [
+        "transport"
+      ],
+      "motivation": "Large signed TXT response over client TCP.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "int_large_client_tcp",
+          "description": "Large signed TXT response over client TCP.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "transport": "tcp"
+        }
+      ]
+    },
+    {
+      "case_id": "int_dau_dnskey",
+      "family": "interaction",
+      "priority": 1,
+      "qname": "mut.test.",
+      "qtype": "DNSKEY",
+      "qclass": "IN",
+      "research_dimension": "dnssec_edns_interaction",
+      "comparison_group": "interaction",
+      "test_tier": "interaction",
+      "reference_case_id": "qtype_dnskey_apex",
+      "changed_properties": [
+        "edns.options"
+      ],
+      "motivation": "DAU algorithm signal on a DNSKEY query.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "int_dau_dnskey",
+          "description": "DAU algorithm signal on a DNSKEY query.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 5,
+                "data_hex": "080d0f",
+                "length": 3,
+                "name": "dau"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "int_dhu_ds",
+      "family": "interaction",
+      "priority": 1,
+      "qname": "child.mut.test.",
+      "qtype": "DS",
+      "qclass": "IN",
+      "research_dimension": "dnssec_edns_interaction",
+      "comparison_group": "interaction",
+      "test_tier": "interaction",
+      "reference_case_id": "qtype_ds_delegation",
+      "changed_properties": [
+        "edns.options"
+      ],
+      "motivation": "DHU digest-algorithm signal on a DS query at the delegation point.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "int_dhu_ds",
+          "description": "DHU digest-algorithm signal on a DS query at the delegation point.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 6,
+                "data_hex": "0204",
+                "length": 2,
+                "name": "dhu"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "int_n3u_nsec3_negative",
+      "family": "interaction",
+      "priority": 1,
+      "qname": "missing.nsec3.mut.test.",
+      "qtype": "A",
+      "qclass": "IN",
+      "research_dimension": "dnssec_edns_interaction",
+      "comparison_group": "interaction",
+      "test_tier": "interaction",
+      "reference_case_id": "qname_nsec3_negative",
+      "changed_properties": [
+        "edns.options"
+      ],
+      "motivation": "N3U hash-algorithm signal on an NSEC3 denial query.",
+      "query_validity": "valid",
+      "expected_processing": "forward_or_local_handling",
+      "expected_observations": {},
+      "variants": [
+        {
+          "variant_id": "int_n3u_nsec3_negative",
+          "description": "N3U hash-algorithm signal on an NSEC3 denial query.",
+          "query_validity": "valid",
+          "expected_processing": "forward_or_local_handling",
+          "expected_observations": {},
+          "edns": {
+            "options": [
+              {
+                "code": 7,
+                "data_hex": "01",
+                "length": 1,
+                "name": "n3u"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

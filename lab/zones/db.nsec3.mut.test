@@ -1,0 +1,18 @@
+$ORIGIN nsec3.mut.test.
+$TTL 300
+
+@   IN SOA ns.nsec3.mut.test.hostmaster.nsec3.mut.test. (
+        2026071901 ; serial
+        300        ; refresh
+        300        ; retry
+        300        ; expire
+        300        ; minimum
+)
+
+@       IN NS   ns.nsec3.mut.test.
+ns      IN A    127.0.0.2
+
+normal  IN A    192.0.2.53
+normal  IN TXT  "nsec3-positive-answer"
+
+txt     IN TXT  "nsec3-text-answer"
